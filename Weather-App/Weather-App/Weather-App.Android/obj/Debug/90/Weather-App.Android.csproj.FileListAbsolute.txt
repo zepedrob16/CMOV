@@ -470,3 +470,6 @@ C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\
 C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
+C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\res\layout\main_activity.xml
+C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\res\drawable\bojack_sneeze.jpg
+C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\stamp\SetupDependenciesForDesigner.stamp

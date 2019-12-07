@@ -26,10 +26,13 @@ external-path;C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android
 foreground;obj\Debug\90\res\mipmap-anydpi-v26\icon.xml
 foreground;obj\Debug\90\res\mipmap-anydpi-v26\icon_round.xml
 FrameLayout;C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\lp\39\jl\res\layout\bottomtablayout.xml
+ImageView;obj\Debug\90\res\layout\main_activity.xml
 item;C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\lp\39\jl\res\values\styles.xml
 item;obj\Debug\90\res\values\styles.xml
 LinearLayout;C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\lp\39\jl\res\layout\bottomtablayout.xml
+LinearLayout;obj\Debug\90\res\layout\main_activity.xml
 paths;C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\lp\38\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+RelativeLayout;obj\Debug\90\res\layout\main_activity.xml
 resources;C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\lp\39\jl\res\values\styles.xml
 resources;obj\Debug\90\res\values\colors.xml
 resources;obj\Debug\90\res\values\styles.xml
@@ -39,6 +42,7 @@ set;C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug
 set;C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\lp\39\jl\res\anim\exittoright.xml
 style;C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\lp\39\jl\res\values\styles.xml
 style;obj\Debug\90\res\values\styles.xml
+TextView;obj\Debug\90\res\layout\main_activity.xml
 translate;C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\lp\39\jl\res\anim\enterfromleft.xml
 translate;C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\lp\39\jl\res\anim\enterfromright.xml
 translate;C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\lp\39\jl\res\anim\exittoleft.xml
