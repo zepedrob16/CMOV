@@ -1,3 +1,6 @@
+Weather_App.Droid.CheckWeather, Weather-App.Android;crc64941baf852d92100c.CheckWeather
+Weather_App.Droid.CheckWeather;crc64941baf852d92100c.CheckWeather
+weather_app.droid.CheckWeather;crc64941baf852d92100c.CheckWeather
 Weather_App.Droid.MainActivity, Weather-App.Android;crc64941baf852d92100c.MainActivity
 Weather_App.Droid.MainActivity;crc64941baf852d92100c.MainActivity
 weather_app.droid.MainActivity;crc64941baf852d92100c.MainActivity

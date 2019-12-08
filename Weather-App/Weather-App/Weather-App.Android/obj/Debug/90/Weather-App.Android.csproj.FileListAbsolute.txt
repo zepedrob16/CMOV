@@ -472,4 +472,7 @@ C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\
 C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
 C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\res\layout\main_activity.xml
 C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\res\drawable\bojack_sneeze.jpg
-C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\stamp\SetupDependenciesForDesigner.stamp
+C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\res\layout\check_weather.xml
+C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\android\src\crc64941baf852d92100c\CheckWeather.java
+C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\android\assets\Mono.Android.Export.dll
+C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\android\assets\Mono.Android.Export.pdb
