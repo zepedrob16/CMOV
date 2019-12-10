@@ -4,6 +4,7 @@ public class MonoPackageManager_Resources {
 		/* We need to ensure that "Weather-App.Android.dll" comes first in this list. */
 		"Weather-App.Android.dll",
 		"FormsViewGroup.dll",
+		"Newtonsoft.Json.dll",
 		"Weather-App.dll",
 		"Xamarin.Android.Arch.Core.Common.dll",
 		"Xamarin.Android.Arch.Core.Runtime.dll",

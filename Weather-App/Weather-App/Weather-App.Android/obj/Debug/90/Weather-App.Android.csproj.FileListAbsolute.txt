@@ -476,3 +476,4 @@ C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\
 C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\android\src\crc64941baf852d92100c\CheckWeather.java
 C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\android\assets\Mono.Android.Export.dll
 C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\android\assets\Mono.Android.Export.pdb
+C:\Github\CMOV-Weather\Weather-App\Weather-App\Weather-App.Android\obj\Debug\90\android\assets\Newtonsoft.Json.dll

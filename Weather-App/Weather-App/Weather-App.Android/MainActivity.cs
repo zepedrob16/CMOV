@@ -18,7 +18,6 @@ namespace Weather_App.Droid
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main_activity);
             
-            View v;
             //Create A Button Object To Set The Event
             Button button = FindViewById<Button> (Resource.Id.checkWeatherButton);
 
