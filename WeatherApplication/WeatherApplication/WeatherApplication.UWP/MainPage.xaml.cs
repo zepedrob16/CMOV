@@ -20,7 +20,6 @@ namespace WeatherApplication.UWP
         public MainPage()
         {
             this.InitializeComponent();
-
             LoadApplication(new WeatherApplication.App());
         }
     }

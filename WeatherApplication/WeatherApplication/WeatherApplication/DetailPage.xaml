@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="WeatherApplication.DetailPage"
              Title="DetailPage"
-             BackgroundColor="Blue">
+             BackgroundColor="#191A22">
 
     <ContentPage.Content>
         <StackLayout>

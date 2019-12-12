@@ -13,7 +13,9 @@ namespace WeatherApplication
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CheckWeather : MasterDetailPage
     {
+        public List<string> favourites = new List<string>();
         DetailPage detailPage;
+        Master master;
         public CheckWeather()
         {
             InitializeComponent();
@@ -21,6 +23,7 @@ namespace WeatherApplication
             getWeather("Porto");
             this.detailPage = new DetailPage();
             this.Master = new Master(this);
+            master = new Master(this);
             this.Detail = new NavigationPage(detailPage);
             App.MasterDetail = this;
         }
@@ -45,5 +48,13 @@ namespace WeatherApplication
 
             Console.WriteLine(result);
         }
+
+        public void addFavourite(string city)
+        {
+            favourites.Add(city);
+           // master.updateFavourites()
+        }
+
+        public List<string> getFavourites() { return favourites; }
     }
 }

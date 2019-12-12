@@ -29,6 +29,7 @@ namespace WeatherApplication.UWP
         public App()
         {
             this.InitializeComponent();
+            Rg.Plugins.Popup.Popup.Init();
             this.Suspending += OnSuspending;
         }
 

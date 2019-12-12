@@ -65,7 +65,7 @@ namespace WeatherApplication
         Main main = new Main();
         Wind wind = new Wind();
         Clouds clouds = new Clouds();
-
+     
         public void jsonToWeather(string jsonResult)
         {
             JObject json = JObject.Parse(jsonResult);
@@ -79,6 +79,7 @@ namespace WeatherApplication
             clouds.all = Int32.Parse(json["clouds"]["all"].ToString());
         }
 
+        //Gets
         public double getMainTemperature() { return main.temp; }
         public double getMainMinTemperature() { return main.temp_min; }
         public double getMainMaxTemperature() { return main.temp_max; }
