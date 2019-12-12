@@ -8,5 +8,8 @@
              Title="Master"
              BackgroundColor="Red"
              IconImageSource="ic_action_menu.png">
-    
+    <StackLayout Padding="20">
+        <Button x:Name="buttonA" Text="Porto" />
+        <Button x:Name="buttonB" Text="Lisboa" />
+    </StackLayout>
 </ContentPage>

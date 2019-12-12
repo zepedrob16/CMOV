@@ -6,6 +6,7 @@ namespace WeatherApplication
 {
     public partial class App : Application
     {
+        public static MasterDetailPage MasterDetail { get; set; }
         public App()
         {
             InitializeComponent();
@@ -23,6 +24,11 @@ namespace WeatherApplication
 
         protected override void OnResume()
         {
+        }
+
+        public void setMainPage(ContentPage newPage)
+        {
+            MainPage = newPage;
         }
     }
 }

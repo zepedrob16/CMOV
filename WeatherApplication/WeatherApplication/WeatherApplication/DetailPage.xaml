@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WeatherApplication.DetailPage"
+             Title="DetailPage"
+             BackgroundColor="Blue">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="temperature"
+                TextColor="White"/>
+
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="minTemperature"
+                TextColor="White"
+            />
+
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="maxTemperature"
+                TextColor="White"
+            />
+
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="precipitation"
+                TextColor="White"
+            />
+
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="humidity"
+                TextColor="White"
+            />
+
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="pressure"
+                TextColor="White"
+            />
+
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="wind"
+                TextColor="White"
+            />
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

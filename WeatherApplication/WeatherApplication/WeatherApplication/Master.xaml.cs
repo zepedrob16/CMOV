@@ -12,9 +12,20 @@ namespace WeatherApplication
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Master : ContentPage
     {
-        public Master()
+        //public Detail detail = new Detail();
+        public Master(CheckWeather checkWeather)
         {
             InitializeComponent();
+
+            buttonA.Clicked += delegate
+            {
+                checkWeather.getWeather(buttonA.Text);
+            };
+
+            buttonB.Clicked += delegate
+            {
+                checkWeather.getWeather(buttonB.Text);
+            };
         }
     }
 }
