@@ -47,24 +47,21 @@ namespace WeatherApplication
             District district = new District();
             district.jsonToWeather(result);
 
-            //Download Image
-           // string icon = district.getIcon();
 
-           /* string imageURL = "http://openweathermap.org/img/w/" + icon + ".png";
-            WebRequest request = default(WebRequest);
-            request = WebRequest.Create(imageURL);
-            request.Timeout = 30;
-            request.Method = "GET";
+            //Creates the page with the forecast for the next day
+            string nextDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=";
+            string nextDayRequest = nextDayUrl + place + "&units=metric" + "&appid=" + apiKey;
 
-            WebResponse response = default(WebResponse);
-            response = await request.GetResponseAsync();
-            MemoryStream ms = new MemoryStream();
-            response.GetResponseStream().CopyTo(ms);
-            byte[] imageData = ms.ToArray();
+            var nextDayHandler = new HttpClientHandler();
+            HttpClient nextDayClient = new HttpClient(nextDayHandler);
+            string nextDayResult = await nextDayClient.GetStringAsync(nextDayRequest);
 
-            Bitmap bitmap = BitmapFactory.DecodeByteArray(imageData, 0, imageData.Length);*/
+            district.nextDayJsonToWeather(nextDayResult);
 
-            detailPage.setWeather(district);
+            NextDay nextDay = new NextDay();
+            nextDay.setIntro(district);
+
+            detailPage.setWeather(district, nextDay);
 
             Console.WriteLine(result);
         }

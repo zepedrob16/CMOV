@@ -59,6 +59,10 @@
                 x:Name="wind"
                 TextColor="White"
             />
+            <Button x:Name="moreInfoButton"  
+                    Text="Tomorrow's Forecast" 
+                    BackgroundColor="#EE6C4D"        
+            />
 
         </StackLayout>
     </ContentPage.Content>

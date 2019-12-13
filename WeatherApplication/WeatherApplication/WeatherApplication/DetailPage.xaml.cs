@@ -15,12 +15,19 @@ namespace WeatherApplication
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailPage : ContentPage
     {
+        NextDay nextDay;
         public DetailPage()
         {
             InitializeComponent();
+
+            moreInfoButton.Clicked += delegate
+            {
+                Navigation.PushAsync(nextDay);
+            };
         }
 
-        public void setWeather(District district)
+        //Publishes information on the DetailPage xaml that was obtained from the district
+        public void setWeather(District district, NextDay nextD)
         {
 
             temperature.Text = district.getMainTemperature().ToString();
@@ -32,6 +39,7 @@ namespace WeatherApplication
             wind.Text = "Wind: " + district.getWindSpeed().ToString();
             weatherIconImage.Source = district.getIcon();
 
+            nextDay = nextD;
         }
     }
 }

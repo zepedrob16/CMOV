@@ -55,22 +55,14 @@ namespace WeatherApplication
                 checkWeather.getWeather(button.Text);
             };
 
+            //Retrieve the add favourite button
             Button newAddFavourite = (Button) FindByName("addFavourite");
-
+   
             stackLayout.Children.Remove(addFavourite);
             //Adds city to the stack layout
             stackLayout.Children.Add(button);
 
-            //Recreate the add favourite button
-
-            /*Button newAddFavourite = new Button();
-            newAddFavourite.Text = "Add New City";
-            newAddFavourite.TextColor = Xamarin.Forms.Color.White;
-            newAddFavourite.Clicked += delegate
-            {
-                PopupNavigation.Instance.PushAsync(new PopupView(this));
-            };*/
-
+            //Adds the favourite button again
             stackLayout.Children.Add(newAddFavourite);
         }
     }

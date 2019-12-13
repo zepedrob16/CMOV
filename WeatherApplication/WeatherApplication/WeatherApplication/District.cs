@@ -20,6 +20,8 @@ namespace WeatherApplication
         public int humidity { get; set; }
         public double temp_min { get; set; }
         public double temp_max { get; set; }
+        public double next_day_temp_min { get; set; }
+        public double next_day_temp_max { get; set; }
     }
 
     public class Wind
@@ -79,7 +81,15 @@ namespace WeatherApplication
             main.humidity = Int32.Parse(json["main"]["humidity"].ToString());
             wind.speed = Double.Parse(json["wind"]["speed"].ToString());
             clouds.all = Int32.Parse(json["clouds"]["all"].ToString());
+
+            //This contains the weather icon url
             weather.icon = "http://openweathermap.org/img/w/" + json["weather"][0]["icon"].ToString() + ".png";
+        }
+
+        public void nextDayJsonToWeather(string jsonResult)
+        {
+            main.next_day_temp_min = 30.12f;
+            string myDate = DateTime.Now.ToString();
         }
 
         //Gets
@@ -91,6 +101,7 @@ namespace WeatherApplication
         public double getWindSpeed() { return wind.speed; }
         public int getAllClouds() { return clouds.all; }
         public string getIcon() { return weather.icon; }
+        public double getMainNextDayMinTemp() { return main.next_day_temp_min; }
 
     }
 }
