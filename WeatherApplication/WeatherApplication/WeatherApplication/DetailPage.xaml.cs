@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Android.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -29,6 +30,7 @@ namespace WeatherApplication
             humidity.Text = "Humidity: " + district.getMainHumidity().ToString();
             pressure.Text = "Pressure: " + district.getMainPressure().ToString();
             wind.Text = "Wind: " + district.getWindSpeed().ToString();
+            weatherIconImage.Source = district.getIcon();
 
         }
     }

@@ -10,6 +10,8 @@
 
     <ContentPage.Content>
         <StackLayout>
+            <Image x:Name="weatherIconImage"  
+                   Source="{Binding CurrentWeatherIcon}"/>
             <Label Text=""
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 

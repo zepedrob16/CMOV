@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Android.Graphics;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +46,23 @@ namespace WeatherApplication
             //Creating a district with the information received
             District district = new District();
             district.jsonToWeather(result);
+
+            //Download Image
+           // string icon = district.getIcon();
+
+           /* string imageURL = "http://openweathermap.org/img/w/" + icon + ".png";
+            WebRequest request = default(WebRequest);
+            request = WebRequest.Create(imageURL);
+            request.Timeout = 30;
+            request.Method = "GET";
+
+            WebResponse response = default(WebResponse);
+            response = await request.GetResponseAsync();
+            MemoryStream ms = new MemoryStream();
+            response.GetResponseStream().CopyTo(ms);
+            byte[] imageData = ms.ToArray();
+
+            Bitmap bitmap = BitmapFactory.DecodeByteArray(imageData, 0, imageData.Length);*/
 
             detailPage.setWeather(district);
 

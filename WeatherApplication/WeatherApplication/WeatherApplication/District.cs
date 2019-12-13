@@ -65,7 +65,9 @@ namespace WeatherApplication
         Main main = new Main();
         Wind wind = new Wind();
         Clouds clouds = new Clouds();
-     
+        Weather weather = new Weather();
+
+        //Stores information obtained from the json
         public void jsonToWeather(string jsonResult)
         {
             JObject json = JObject.Parse(jsonResult);
@@ -77,6 +79,7 @@ namespace WeatherApplication
             main.humidity = Int32.Parse(json["main"]["humidity"].ToString());
             wind.speed = Double.Parse(json["wind"]["speed"].ToString());
             clouds.all = Int32.Parse(json["clouds"]["all"].ToString());
+            weather.icon = "http://openweathermap.org/img/w/" + json["weather"][0]["icon"].ToString() + ".png";
         }
 
         //Gets
@@ -87,6 +90,7 @@ namespace WeatherApplication
         public int getMainHumidity() { return main.humidity; }
         public double getWindSpeed() { return wind.speed; }
         public int getAllClouds() { return clouds.all; }
+        public string getIcon() { return weather.icon; }
 
     }
 }
