@@ -89,7 +89,26 @@ namespace WeatherApplication
         public void nextDayJsonToWeather(string jsonResult)
         {
             main.next_day_temp_min = 30.12f;
-            string myDate = DateTime.Now.ToString();
+            var today = DateTime.Now;
+            string nextDay = today.AddDays(1).ToString("yyyy-MM-ddTHH:mm:ss").Substring(0,10);
+
+            getListOfObjects(nextDay, jsonResult);            
+        }
+
+        private void getListOfObjects(string nextDay, string jsonResult)
+        {
+            List<JObject> allObjects = new List<JObject>();
+            JObject json = JObject.Parse(jsonResult);
+
+            foreach (var obj in json["list"])
+            {
+                string dayToCompare = obj["dt_txt"].ToString().Substring(0, 10);
+
+                if (dayToCompare == nextDay)
+                {
+                    Console.WriteLine("bitch");
+                }  
+            };
         }
 
         //Gets
