@@ -59,7 +59,7 @@ namespace WeatherApplication
             district.nextDayJsonToWeather(nextDayResult);
 
             NextDay nextDay = new NextDay();
-            nextDay.setIntro(district);
+            nextDay.setInfo(district);
 
             detailPage.setWeather(district, nextDay);
 

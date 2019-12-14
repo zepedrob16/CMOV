@@ -4,14 +4,58 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="WeatherApplication.NextDay">
+             x:Class="WeatherApplication.NextDay"
+             BackgroundColor="#191A22">
     <ContentPage.Content>
         <StackLayout>
-            <Label
-                x:Name="intro"
-                Text="Welcome to Xamarin.Forms!"
+            <Label Text=""
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="nextDayTemperature"
+                TextColor="White"/>
+
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="nextDayMinTemperature"
+                TextColor="White"
+            />
+
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="nextDayMaxTemperature"
+                TextColor="White"
+            />
+
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="nextDayPrecipitation"
+                TextColor="White"
+            />
+
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="nextDayHumidity"
+                TextColor="White"
+            />
+
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="nextDayPressure"
+                TextColor="White"
+            />
+
+            <Label Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                x:Name="nextDayWind"
+                TextColor="White"
+            />
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

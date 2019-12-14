@@ -17,9 +17,15 @@ namespace WeatherApplication
             InitializeComponent();
         }
 
-        public void setIntro(District district)
+        public void setInfo(District district)
         {
-            intro.Text = district.getMainNextDayMinTemp().ToString();
+            nextDayMinTemperature.Text = "Min Temp: " + district.getMainNextDayMinTemp().ToString();
+            nextDayMaxTemperature.Text = "Max temp: " + district.getMainNextDayMaxTemp().ToString();
+            nextDayHumidity.Text = "Humidity: " + district.getMainNextDayHumidity().ToString();
+            nextDayPrecipitation.Text = "Rain: " + district.getRainNextDayVolume().ToString();
+            nextDayPressure.Text = "Pressure: " + district.getMainNextDayPressure().ToString();
+            nextDayWind.Text = "Wind: " + district.getWindNextDaySpeed().ToString();
+            
         }
     }
 }

@@ -17,7 +17,9 @@ namespace WeatherApplication
     {
         public double temp { get; set; }
         public int pressure { get; set; }
+        public int next_day_pressure { get; set; }
         public int humidity { get; set; }
+        public int next_day_humidity { get; set; }
         public double temp_min { get; set; }
         public double temp_max { get; set; }
         public double next_day_temp_min { get; set; }
@@ -27,6 +29,7 @@ namespace WeatherApplication
     public class Wind
     {
         public double speed { get; set; }
+        public double next_day_speed { get; set; }
         public int deg { get; set; }
     }
 
@@ -42,6 +45,12 @@ namespace WeatherApplication
         public string country { get; set; }
         public int sunrise { get; set; }
         public int sunset { get; set; }
+    }
+
+    public class Rain
+    {
+        public double volume { get; set; }
+        public double next_day_volume { get; set; }
     }
 
     public class RootObject
@@ -68,6 +77,7 @@ namespace WeatherApplication
         Wind wind = new Wind();
         Clouds clouds = new Clouds();
         Weather weather = new Weather();
+        Rain rain = new Rain();
 
         //Stores information obtained from the json
         public void jsonToWeather(string jsonResult)
@@ -104,6 +114,7 @@ namespace WeatherApplication
             double maxRain = 0.0;
             int maxHumidity = 0;
             double maxWind = 0;
+            int maxPressure = 0;
 
             foreach (var obj in json["list"])
             {
@@ -138,11 +149,21 @@ namespace WeatherApplication
                     double windToCompare = Double.Parse(obj["wind"]["speed"].ToString());
                     if (windToCompare > maxWind)
                         maxWind = windToCompare;
+
+                    //Max Pressure
+                    int pressureToCompare = Int32.Parse(obj["main"]["pressure"].ToString());
+                    if (pressureToCompare > maxPressure)
+                        maxPressure = pressureToCompare;
                 }  
             };
 
             main.next_day_temp_max = maximumTemp;
             main.next_day_temp_min = minimumTemp;
+            main.next_day_humidity = maxHumidity;
+            rain.next_day_volume = maxRain;
+            wind.next_day_speed = maxWind;
+            main.next_day_pressure = maxPressure;
+            
         }
 
         //Gets
@@ -155,6 +176,10 @@ namespace WeatherApplication
         public int getAllClouds() { return clouds.all; }
         public string getIcon() { return weather.icon; }
         public double getMainNextDayMinTemp() { return main.next_day_temp_min; }
-
+        public double getMainNextDayMaxTemp() { return main.next_day_temp_max; }
+        public int getMainNextDayHumidity() { return main.next_day_humidity; }
+        public double getRainNextDayVolume() { return rain.next_day_volume; }
+        public double getWindNextDaySpeed() { return wind.next_day_speed; }
+        public double getMainNextDayPressure() { return main.next_day_pressure; }
     }
 }
