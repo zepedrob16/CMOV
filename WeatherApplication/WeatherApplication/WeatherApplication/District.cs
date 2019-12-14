@@ -97,8 +97,13 @@ namespace WeatherApplication
 
         private void getListOfObjects(string nextDay, string jsonResult)
         {
-            List<JObject> allObjects = new List<JObject>();
+            //List<JObject> allObjects = new List<JObject>();
             JObject json = JObject.Parse(jsonResult);
+            double maximumTemp = -60.0;
+            double minimumTemp = 80.0;
+            double maxRain = 0.0;
+            int maxHumidity = 0;
+            double maxWind = 0;
 
             foreach (var obj in json["list"])
             {
@@ -106,9 +111,38 @@ namespace WeatherApplication
 
                 if (dayToCompare == nextDay)
                 {
-                    Console.WriteLine("bitch");
+                    double maxTempToCompare = Double.Parse(obj["main"]["temp_max"].ToString());
+                    double minTempToCompare = Double.Parse(obj["main"]["temp_min"].ToString());
+
+                    //Min and max temperatures
+                    if (maxTempToCompare > maximumTemp)
+                        maximumTemp = maxTempToCompare;
+                    if (minTempToCompare < minimumTemp)
+                        minimumTemp = minTempToCompare;
+
+                    //Rain volume
+                    if (obj["rain"] != null)
+                    {
+                        double rainToCompare = Double.Parse(obj["rain"]["3h"].ToString());
+
+                        if (rainToCompare > maxRain)
+                            maxRain = rainToCompare;
+                    }
+
+                    //Max humidity
+                    int humidityToCompare = Int32.Parse(obj["main"]["humidity"].ToString());
+                    if (humidityToCompare > maxHumidity)
+                        maxHumidity = humidityToCompare;
+
+                    //Max Wind Speed
+                    double windToCompare = Double.Parse(obj["wind"]["speed"].ToString());
+                    if (windToCompare > maxWind)
+                        maxWind = windToCompare;
                 }  
             };
+
+            main.next_day_temp_max = maximumTemp;
+            main.next_day_temp_min = minimumTemp;
         }
 
         //Gets
