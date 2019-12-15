@@ -25,7 +25,6 @@ namespace WeatherApplication
             nextDayPrecipitation.Text = "Rain: " + district.getRainNextDayVolume().ToString();
             nextDayPressure.Text = "Pressure: " + district.getMainNextDayPressure().ToString();
             nextDayWind.Text = "Wind: " + district.getWindNextDaySpeed().ToString();
-            
         }
     }
 }

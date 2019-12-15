@@ -1,10 +1,13 @@
 ﻿using Android.Graphics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,26 +20,29 @@ namespace WeatherApplication
     public partial class CheckWeather : MasterDetailPage
     {
         public List<string> favourites = new List<string>();
+        JObject jObject = new JObject();
         DetailPage detailPage;
         Master master;
+        public List<DistrictInfo> districtInfos;
         public CheckWeather()
         {
             InitializeComponent();
 
-            getWeather("Porto");
+            getWeather(2735941);
             this.detailPage = new DetailPage();
             this.Master = new Master(this);
             master = new Master(this);
             this.Detail = new NavigationPage(detailPage);
             App.MasterDetail = this;
+            districtInfos = LoadJson();
         }
 
-        public async void getWeather(string place)
+        public async void getWeather(int id)
         {
             //Api Request
             string apiKey = "12064b9f476aaa5afe370326c61f5e1b";
-            string url = "https://api.openweathermap.org/data/2.5/weather?q=";
-            string apiRequest = url + place + "&units=metric" + "&appid=" + apiKey;
+            string url = "https://api.openweathermap.org/data/2.5/weather?id=";
+            string apiRequest = url + id.ToString() + "&units=metric" + "&appid=" + apiKey;
 
             //Sending the request and saving the result
             var handler = new HttpClientHandler();
@@ -49,8 +55,8 @@ namespace WeatherApplication
 
 
             //Creates the page with the forecast for the next day
-            string nextDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=";
-            string nextDayRequest = nextDayUrl + place + "&units=metric" + "&appid=" + apiKey;
+            string nextDayUrl = "https://api.openweathermap.org/data/2.5/forecast?id=";
+            string nextDayRequest = nextDayUrl + id.ToString() + "&units=metric" + "&appid=" + apiKey;
 
             var nextDayHandler = new HttpClientHandler();
             HttpClient nextDayClient = new HttpClient(nextDayHandler);
@@ -70,6 +76,18 @@ namespace WeatherApplication
         {
             favourites.Add(city);
            // master.updateFavourites()
+        }
+
+        private List<DistrictInfo> LoadJson()
+        {
+            Assembly assembly = IntrospectionExtensions.GetTypeInfo(typeof(CheckWeather)).Assembly;
+            Stream stream = assembly.GetManifestResourceStream("WeatherApplication.Portugal.json");
+
+            using (var reader = new StreamReader(stream))
+            {
+                string jsonStr = reader.ReadToEnd();
+                return JsonConvert.DeserializeObject<List<DistrictInfo>>(jsonStr);
+            }
         }
 
         public List<string> getFavourites() { return favourites; }

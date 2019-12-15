@@ -61,7 +61,8 @@
             />
             <Button x:Name="moreInfoButton"  
                     Text="Tomorrow's Forecast" 
-                    BackgroundColor="#EE6C4D"        
+                    BackgroundColor="#EE6C4D"
+                    TextColor="White"
             />
 
         </StackLayout>

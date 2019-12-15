@@ -9,8 +9,6 @@
              BackgroundColor="#3D5A80"
              IconImageSource="ic_action_menu.png">
     <StackLayout Padding="20" x:Name="masterLayout">
-        <Button x:Name="buttonA" Text="Porto" TextColor="White"/>
-        <Button x:Name="buttonB" Text="Lisboa" TextColor="White"/>
-        <Button x:Name="addFavourite" Text="Add New City" TextColor="White"></Button>
+        <Button x:Name="addFavourite" Text="Add New City" BackgroundColor="#191A22" TextColor="White"></Button>
     </StackLayout>
 </ContentPage>

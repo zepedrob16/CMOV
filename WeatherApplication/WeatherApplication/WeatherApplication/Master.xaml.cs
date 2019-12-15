@@ -20,15 +20,15 @@ namespace WeatherApplication
             InitializeComponent();
             checkWeather = checkW;
 
-            buttonA.Clicked += delegate
+            /*buttonA.Clicked += delegate
             {
-                checkWeather.getWeather(buttonA.Text);
+                checkWeather.getWeather(2735941);
             };
 
             buttonB.Clicked += delegate
             {
-                checkWeather.getWeather(buttonB.Text);
-            };
+                checkWeather.getWeather(2267056);
+            };*/
 
             addFavourite.Clicked += delegate
             {
@@ -37,6 +37,16 @@ namespace WeatherApplication
         }
         
         public void submitEntry(string cityName)
+        {
+
+            foreach (var obj in checkWeather.districtInfos)
+            {
+                if (cityName == obj.name)
+                    AddEntry(cityName, obj.id);
+            }
+        }
+
+        public void AddEntry(string cityName, int id)
         {
             //Find stack Layout
             StackLayout stackLayout = (StackLayout)FindByName("masterLayout");
@@ -50,14 +60,15 @@ namespace WeatherApplication
                 Text = cityName
             };
             button.TextColor = Xamarin.Forms.Color.White;
+            button.BackgroundColor = Xamarin.Forms.Color.FromHex("#EE6C4D");
             button.Clicked += delegate
             {
-                checkWeather.getWeather(button.Text);
+                checkWeather.getWeather(id);
             };
 
             //Retrieve the add favourite button
-            Button newAddFavourite = (Button) FindByName("addFavourite");
-   
+            Button newAddFavourite = (Button)FindByName("addFavourite");
+
             stackLayout.Children.Remove(addFavourite);
             //Adds city to the stack layout
             stackLayout.Children.Add(button);

@@ -182,4 +182,11 @@ namespace WeatherApplication
         public double getWindNextDaySpeed() { return wind.next_day_speed; }
         public double getMainNextDayPressure() { return main.next_day_pressure; }
     }
+
+    public class DistrictInfo
+    {
+        public string name;
+        public int id;
+
+    }
 }
