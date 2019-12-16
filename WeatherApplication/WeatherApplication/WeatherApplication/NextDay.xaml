@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              mc:Ignorable="d"
              x:Class="WeatherApplication.NextDay"
              BackgroundColor="#191A22">
@@ -11,20 +12,20 @@
             <Label Text=""
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
-                x:Name="nextDayTemperature"
+                x:Name="nextDayTemp"
                 TextColor="White"/>
 
             <Label Text=""
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
-                x:Name="nextDayMinTemperature"
+                x:Name="nextDayMinTemp"
                 TextColor="White"
             />
 
             <Label Text=""
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
-                x:Name="nextDayMaxTemperature"
+                x:Name="nextDayMaxTemp"
                 TextColor="White"
             />
 
@@ -55,7 +56,13 @@
                 x:Name="nextDayWind"
                 TextColor="White"
             />
-            
+
+            <skia:SKCanvasView 
+                x:Name="canvas"
+                HorizontalOptions="Fill"
+                VerticalOptions="FillAndExpand"
+            />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

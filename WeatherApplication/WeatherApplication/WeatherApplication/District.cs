@@ -78,6 +78,7 @@ namespace WeatherApplication
         Clouds clouds = new Clouds();
         Weather weather = new Weather();
         Rain rain = new Rain();
+        List<JToken> nextDayObjs = new List<JToken>();
 
         //Stores information obtained from the json
         public void jsonToWeather(string jsonResult)
@@ -115,6 +116,7 @@ namespace WeatherApplication
             int maxHumidity = 0;
             double maxWind = 0;
             int maxPressure = 0;
+            
 
             foreach (var obj in json["list"])
             {
@@ -122,6 +124,7 @@ namespace WeatherApplication
 
                 if (dayToCompare == nextDay)
                 {
+                    nextDayObjs.Add(obj);
                     double maxTempToCompare = Double.Parse(obj["main"]["temp_max"].ToString());
                     double minTempToCompare = Double.Parse(obj["main"]["temp_min"].ToString());
 
@@ -163,6 +166,7 @@ namespace WeatherApplication
             rain.next_day_volume = maxRain;
             wind.next_day_speed = maxWind;
             main.next_day_pressure = maxPressure;
+
             
         }
 
@@ -181,6 +185,7 @@ namespace WeatherApplication
         public double getRainNextDayVolume() { return rain.next_day_volume; }
         public double getWindNextDaySpeed() { return wind.next_day_speed; }
         public double getMainNextDayPressure() { return main.next_day_pressure; }
+        public List<JToken> getNextDayObjs() { return nextDayObjs; }
     }
 
     public class DistrictInfo

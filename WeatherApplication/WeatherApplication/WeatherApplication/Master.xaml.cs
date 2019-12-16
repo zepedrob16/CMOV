@@ -63,6 +63,7 @@ namespace WeatherApplication
             button.BackgroundColor = Xamarin.Forms.Color.FromHex("#EE6C4D");
             button.Clicked += delegate
             {
+                App.MasterDetail.IsPresented = false;
                 checkWeather.getWeather(id);
             };
 
