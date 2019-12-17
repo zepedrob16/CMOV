@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace WeatherApplication
 {
@@ -21,6 +22,9 @@ namespace WeatherApplication
         private float maxTemp;
         private float minTemp;
         private int ylen;
+        
+        private SKCanvas cnv;
+
         public NextDay()
         {
             InitializeComponent();
@@ -40,19 +44,33 @@ namespace WeatherApplication
             forecast = district.getNextDayObjs();
         }
 
+
+        // Handle animation code
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            drawingView.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            drawingView.OnDisappearing();
+        }
+
         public void OnPaint(object sender, SKPaintSurfaceEventArgs args)
         {
             int wd = args.Info.Width;
             int hg = args.Info.Height;
-            SKCanvas cnv = args.Surface.Canvas;
+            cnv = args.Surface.Canvas;
 
             cnv.Clear();
             
-            DrawAxis(cnv, wd, hg);
-            DrawGraph(cnv, wd, hg);
+            DrawAxis(wd, hg);
+            DrawGraph(wd, hg);
         }
 
-        void DrawAxis(SKCanvas cnv, int wd, int hg)
+        void DrawAxis(int wd, int hg)
         {
             SKPaint coorPaint = new SKPaint
             {      // paint for the axis and text
@@ -60,7 +78,7 @@ namespace WeatherApplication
                 Color = SKColors.Coral,
                 StrokeWidth = 2,
                 StrokeCap = SKStrokeCap.Square,
-                TextSize = 2 * margin
+                TextSize = Math.Min(2 * margin, 50f)
             };
 
             margin = Math.Min(hg / 4, wd / 4);
@@ -74,7 +92,7 @@ namespace WeatherApplication
             cnv.DrawLine(margin, margin + ylen - factor*ylen, wd - margin, margin + ylen - factor * ylen, coorPaint); // draw the X axis
         }
 
-        void DrawGraph(SKCanvas cnv, int wd, int hg)
+        void DrawGraph(int wd, int hg)
         {
             SKPaint gPaint = new SKPaint
             {        // paint for the graphic

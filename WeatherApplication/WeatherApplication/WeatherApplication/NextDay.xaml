@@ -4,65 +4,86 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:WeatherApplication="clr-namespace:WeatherApplication"
              mc:Ignorable="d"
              x:Class="WeatherApplication.NextDay"
              BackgroundColor="#191A22">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text=""
+        <StackLayout Orientation="Vertical">
+            <Grid>
+                <Label 
+                Text=""
+                Grid.Row="0"   
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="nextDayTemp"
                 TextColor="White"/>
 
-            <Label Text=""
+            <Label 
+                Text=""
+                Grid.Row="1" 
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="nextDayMinTemp"
                 TextColor="White"
             />
 
-            <Label Text=""
+            <Label 
+                Text=""
+                Grid.Row="2" 
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="nextDayMaxTemp"
                 TextColor="White"
             />
 
-            <Label Text=""
+            <Label 
+                Text=""
+                Grid.Row="3" 
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="nextDayPrecipitation"
                 TextColor="White"
             />
 
-            <Label Text=""
+            <Label 
+                Text=""
+                Grid.Row="4" 
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="nextDayHumidity"
                 TextColor="White"
             />
 
-            <Label Text=""
+            <Label 
+                Text=""
+                Grid.Row="5" 
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="nextDayPressure"
                 TextColor="White"
             />
 
-            <Label Text=""
+            <Label 
+                Text=""
+                Grid.Row="6" 
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="nextDayWind"
                 TextColor="White"
             />
 
+
+            </Grid>
+
+            <WeatherApplication:DrawingWeatherView
+                    x:Name="drawingView"
+                    />
             <skia:SKCanvasView 
                 x:Name="canvas"
                 HorizontalOptions="Fill"
                 VerticalOptions="FillAndExpand"
             />
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

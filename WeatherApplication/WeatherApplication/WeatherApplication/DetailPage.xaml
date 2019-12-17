@@ -5,20 +5,43 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="WeatherApplication.DetailPage"
+             xmlns:WeatherApplication="clr-namespace:WeatherApplication"
              Title="DetailPage"
              BackgroundColor="#191A22">
-
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Image x:Name="weatherIconImage"  
-                   Source="{Binding CurrentWeatherIcon}"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="50*" />
+                <RowDefinition Height="20*" />
+            </Grid.RowDefinitions>
+            
+            <Grid
+                Grid.Row="0">
+            <Label 
+                Text="Cidade"
+                x:Name="cityName"
+                HorizontalOptions="CenterAndExpand" 
+                TextColor="White"
+                Grid.Row="0"
+            />
+                <WeatherApplication:DrawingWeatherView 
+                x:Name="drawingView"
+                    Grid.Row="1"/>
+            </Grid>
+            <Grid
+                Grid.Row="1">
+                
             <Label Text=""
+                   Grid.Row="0"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="temperature"
                 TextColor="White"/>
 
             <Label Text=""
+                   Grid.Row="1"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="minTemperature"
@@ -26,6 +49,7 @@
             />
 
             <Label Text=""
+                   Grid.Row="2"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="maxTemperature"
@@ -33,6 +57,7 @@
             />
 
             <Label Text=""
+                   Grid.Row="3"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="precipitation"
@@ -40,6 +65,7 @@
             />
 
             <Label Text=""
+                   Grid.Row="4"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="humidity"
@@ -47,6 +73,7 @@
             />
 
             <Label Text=""
+                   Grid.Row="5"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="pressure"
@@ -54,18 +81,22 @@
             />
 
             <Label Text=""
+                   Grid.Row="6"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 x:Name="wind"
                 TextColor="White"
             />
+            
+
+        </Grid>
             <Button x:Name="moreInfoButton"  
                     Text="Tomorrow's Forecast" 
                     BackgroundColor="#EE6C4D"
                     TextColor="White"
+                    Grid.Row="2"
             />
-
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 
 </ContentPage>

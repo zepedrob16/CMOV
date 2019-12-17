@@ -24,6 +24,7 @@ namespace WeatherApplication
         DetailPage detailPage;
         Master master;
         public List<DistrictInfo> districtInfos;
+       
         public CheckWeather()
         {
             InitializeComponent();
