@@ -22,13 +22,14 @@ namespace WeatherApplication
         private SKCanvas cnv;
         private String conditions = "Clear";
 
-        private float sunRotation = 0;
+        private float sunRotation;
        
         private SKPaint sunP, cloudLightP, cloudGreyP, cloudDarkP, rainP, thunderP;
         public DrawingWeatherView()
         {
             InitializeComponent();
             CreatePaints();
+            sunRotation = 0;
             stopwatch = new Stopwatch();
         }
 
@@ -96,17 +97,11 @@ namespace WeatherApplication
 
             while (pageIsActive)
             {
-                canvas.InvalidateSurface();
-
+                canvasView.InvalidateSurface();
+               
                 // Do animation here
                 globalScale += 1 / 60f;
-                if (conditions == "Clear")
-                    DrawSun();
-                else if (conditions == "Clouds")
-                    DrawClouds();
-                else if (conditions == "Rain")
-                    DrawRain();
-
+               
                 await Task.Delay(TimeSpan.FromSeconds(1.0 / 60));
             }
 
@@ -131,7 +126,28 @@ namespace WeatherApplication
 
         private void DrawSun()
         {
-            cnv.DrawCircle(wd/2, hg/2, Math.Min(wd/2,hg/2), sunP);
+            sunRotation += 1 / 60f;
+            float sunRadius = Math.Min(wd / 5, hg / 5);
+            cnv.DrawCircle(wd/2, hg/2, sunRadius, sunP);
+            
+            Debug.WriteLine(sunRotation.ToString());
+
+            float bladeRadius = Math.Min(wd / 5, hg / 5);
+            double currPos = sunRotation;
+            int blades = 8;
+            float startX = wd/2, startY = hg/2, endX = 0, endY = 0;
+            for (int i = 0; i < blades; i++)
+            {
+                startX = wd / 2 + sunRadius * (float) Math.Cos(currPos);
+                endX = startX + bladeRadius * (float) Math.Cos(currPos);
+
+                startY = hg / 2 + sunRadius * (float) Math.Sin(currPos);
+                endY = startY + bladeRadius * (float)Math.Sin(currPos);
+                
+                currPos += Math.PI * 2 / blades;
+
+                cnv.DrawLine(startX, startY, endX, endY, sunP);
+            }
         }
         private void DrawClouds()
         {

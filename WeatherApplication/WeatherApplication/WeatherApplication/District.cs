@@ -72,7 +72,7 @@ namespace WeatherApplication
 
     public class District
     {
-
+        string city = "";
         Main main = new Main();
         Wind wind = new Wind();
         Clouds clouds = new Clouds();
@@ -85,6 +85,7 @@ namespace WeatherApplication
         {
             JObject json = JObject.Parse(jsonResult);
 
+            city = json["name"].ToString();
             main.temp = Double.Parse(json["main"]["temp"].ToString());
             main.temp_min = Double.Parse(json["main"]["temp_min"].ToString());
             main.temp_max = Double.Parse(json["main"]["temp_max"].ToString());
@@ -171,6 +172,8 @@ namespace WeatherApplication
         }
 
         //Gets
+
+        public string getCityName() { return city;  }
         public double getMainTemperature() { return main.temp; }
         public double getMainMinTemperature() { return main.temp_min; }
         public double getMainMaxTemperature() { return main.temp_max; }

@@ -8,14 +8,13 @@
              x:Class="WeatherApplication.DrawingWeatherView">
 <ContentView.Content>
     <StackLayout>
-        <skia:SKCanvasView 
-            x:Name="canvas"
+            <skia:SKCanvasView 
+            x:Name="canvasView"
             HorizontalOptions="Fill"
             VerticalOptions="FillAndExpand"
             PaintSurface="OnCanvasViewPaintSurface"
         />
-       
-    </StackLayout>
+        </StackLayout>
     
 </ContentView.Content>
 </ContentView>

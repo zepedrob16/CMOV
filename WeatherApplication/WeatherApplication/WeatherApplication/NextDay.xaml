@@ -9,7 +9,8 @@
              x:Class="WeatherApplication.NextDay"
              BackgroundColor="#191A22">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical"
+                     >
             <Grid>
                 <Label 
                 Text=""

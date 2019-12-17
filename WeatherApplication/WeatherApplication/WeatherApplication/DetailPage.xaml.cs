@@ -26,17 +26,29 @@ namespace WeatherApplication
             };
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            drawingView.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            drawingView.OnDisappearing();
+        }
+
         //Publishes information on the DetailPage xaml that was obtained from the district
         public void setWeather(District district, NextDay nextD)
         {
-
-            temperature.Text = district.getMainTemperature().ToString();
-            minTemperature.Text = district.getMainMinTemperature().ToString() + " | ";
-            maxTemperature.Text = district.getMainMaxTemperature().ToString();
-            precipitation.Text = "Precipitation: " + district.getAllClouds().ToString() + "%";
-            humidity.Text = "Humidity: " + district.getMainHumidity().ToString();
-            pressure.Text = "Pressure: " + district.getMainPressure().ToString();
-            wind.Text = "Wind: " + district.getWindSpeed().ToString();
+            cityName.Text = district.getCityName().ToString();
+            mainTemperature.Text = district.getMainTemperature().ToString();
+            temperature.Text = "Min: " + district.getMainMinTemperature().ToString() + "ºC | " +
+                " Max: " + district.getMainMaxTemperature().ToString() + "ºC";
+            precipitation.Text = district.getAllClouds().ToString() + "%";
+            humidity.Text = district.getMainHumidity().ToString();
+            pressure.Text = district.getMainPressure().ToString();
+            wind.Text = district.getWindSpeed().ToString();
             //weatherIconImage.Source = district.getIcon();
 
             nextDay = nextD;
