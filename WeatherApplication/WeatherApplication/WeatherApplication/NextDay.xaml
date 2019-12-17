@@ -9,82 +9,174 @@
              x:Class="WeatherApplication.NextDay"
              BackgroundColor="#191A22">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical"
-                     >
-            <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="40*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid
+                Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35*" />
+                    <RowDefinition Height="65*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
                 <Label 
                 Text=""
-                Grid.Row="0"   
+                    FontSize="Large"
+                x:Name="cityName"
+                HorizontalOptions="CenterAndExpand" 
+                VerticalOptions="CenterAndExpand" 
+                TextColor="White"
+                Grid.Row="0" 
+                    Grid.Column="1"
+                />
+                <WeatherApplication:DrawingWeatherView 
+                x:Name="drawingView"
+                    Grid.Row="1"
+                    Grid.Column="1"/>
+            </Grid>
+            <Grid
+                Grid.Row="3" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="19*"/>
+                    <RowDefinition Height="14*"/>
+                    <RowDefinition Height="14*"/>
+                    <RowDefinition Height="14*"/>
+                    <RowDefinition Height="14*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text=""
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontSize="Large"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
-                x:Name="nextDayTemp"
+                x:Name="mainTemperature"
                 TextColor="White"/>
-
-            <Label 
+                <Label 
                 Text=""
-                Grid.Row="1" 
+                FontSize="Medium"
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                x:Name="temperature"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
-                x:Name="nextDayMinTemp"
+                TextColor="White"
+               />
+
+
+                <Label 
+                Text="PRECIPITATION:"
+                Grid.Row="2"
+                Grid.Column="1"
+                    
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="FillAndExpand" 
+                TextColor="White"
+               />
+
+                <Label 
+                Text=""
+                Grid.Row="2"
+                Grid.Column="2"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="EndAndExpand" 
+                x:Name="precipitation"
                 TextColor="White"
             />
 
-            <Label 
-                Text=""
-                Grid.Row="2" 
+                <Label 
+                Text="HUMIDITY:"
+                Grid.Row="3"
+                Grid.Column="1"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
-                x:Name="nextDayMaxTemp"
+                HorizontalOptions="FillAndExpand" 
+                TextColor="White"
+               />
+
+                <Label 
+                Text=""
+                Grid.Row="3"
+                Grid.Column="2"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="EndAndExpand" 
+                x:Name="humidity"
                 TextColor="White"
             />
-
-            <Label 
-                Text=""
-                Grid.Row="3" 
+                <Label 
+                Text="PRESSURE:"
+                Grid.Row="4"
+                Grid.Column="1"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
-                x:Name="nextDayPrecipitation"
+                HorizontalOptions="FillAndExpand" 
+                TextColor="White"
+               />
+
+                <Label 
+                Text=""
+                Grid.Row="4"
+                Grid.Column="2"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="EndAndExpand" 
+                x:Name="pressure"
                 TextColor="White"
             />
-
-            <Label 
-                Text=""
-                Grid.Row="4" 
+                <Label 
+                Text="WIND:"
+                Grid.Row="5"
+                Grid.Column="1"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
-                x:Name="nextDayHumidity"
+                HorizontalOptions="FillAndExpand" 
                 TextColor="White"
-            />
+               />
 
-            <Label 
+                <Label 
                 Text=""
-                Grid.Row="5" 
+                Grid.Row="5"
+                Grid.Column="2"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
-                x:Name="nextDayPressure"
-                TextColor="White"
-            />
-
-            <Label 
-                Text=""
-                Grid.Row="6" 
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
-                x:Name="nextDayWind"
+                HorizontalOptions="EndAndExpand" 
+                x:Name="wind"
                 TextColor="White"
             />
 
 
             </Grid>
-
-            <WeatherApplication:DrawingWeatherView
-                    x:Name="drawingView"
-                    />
+            
             <skia:SKCanvasView 
                 x:Name="canvas"
                 HorizontalOptions="Fill"
                 VerticalOptions="FillAndExpand"
+                Grid.Row="4"
+                Grid.Column="1"
             />
-        </StackLayout>
+
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

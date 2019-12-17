@@ -130,8 +130,6 @@ namespace WeatherApplication
             float sunRadius = Math.Min(wd / 5, hg / 5);
             cnv.DrawCircle(wd/2, hg/2, sunRadius, sunP);
             
-            Debug.WriteLine(sunRotation.ToString());
-
             float bladeRadius = Math.Min(wd / 5, hg / 5);
             double currPos = sunRotation;
             int blades = 8;

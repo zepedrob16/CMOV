@@ -19,8 +19,8 @@ namespace WeatherApplication
     {
         private int margin;
         private List<JToken> forecast;
-        private float maxTemp;
-        private float minTemp;
+        private float maxTempG;
+        private float minTempG;
         private int ylen;
         
         private SKCanvas cnv;
@@ -33,14 +33,15 @@ namespace WeatherApplication
 
         public void setInfo(District district)
         {
-            minTemp = Math.Min(float.Parse(district.getMainNextDayMinTemp().ToString()),0);
-            maxTemp = Math.Max(float.Parse(district.getMainNextDayMaxTemp().ToString()),25);
-            nextDayMinTemp.Text = "Min Temp: " + district.getMainNextDayMinTemp().ToString();
-            nextDayMaxTemp.Text = "Max temp: " + district.getMainNextDayMaxTemp().ToString();
-            nextDayHumidity.Text = "Humidity: " + district.getMainNextDayHumidity().ToString();
-            nextDayPrecipitation.Text = "Rain: " + district.getRainNextDayVolume().ToString();
-            nextDayPressure.Text = "Pressure: " + district.getMainNextDayPressure().ToString();
-            nextDayWind.Text = "Wind: " + district.getWindNextDaySpeed().ToString();
+            cityName.Text = district.getCityName().ToString();
+            minTempG = Math.Min(float.Parse(district.getMainNextDayMinTemp().ToString()),0);
+            maxTempG = Math.Max(float.Parse(district.getMainNextDayMaxTemp().ToString()),25);
+            temperature.Text = "Min: " + district.getMainNextDayMinTemp().ToString() + "ºC | " +
+                " Max: " + district.getMainNextDayMaxTemp().ToString() + "ºC";
+            humidity.Text = district.getMainNextDayHumidity().ToString();
+            precipitation.Text = district.getRainNextDayVolume().ToString();
+            pressure.Text = district.getMainNextDayPressure().ToString();
+            wind.Text = district.getWindNextDaySpeed().ToString();
             forecast = district.getNextDayObjs();
         }
 
@@ -87,7 +88,7 @@ namespace WeatherApplication
 
             cnv.DrawLine(margin, hg - ylen - margin, margin, hg - margin, coorPaint);  // draw the Y axis
 
-            float factor = ((0 - minTemp) / (maxTemp - minTemp));
+            float factor = ((0 - minTempG) / (maxTempG - minTempG));
 
             cnv.DrawLine(margin, margin + ylen - factor*ylen, wd - margin, margin + ylen - factor * ylen, coorPaint); // draw the X axis
         }
@@ -111,7 +112,7 @@ namespace WeatherApplication
                 StrokeWidth = 1,
                 IsAntialias = true,
                 TextAlign = SKTextAlign.Center,
-                TextSize = margin/2
+                TextSize = margin/5
             };
 
             SKPath path = new SKPath();
@@ -130,7 +131,7 @@ namespace WeatherApplication
                 currTemp = float.Parse(forecast[k]["main"]["temp_max"].ToString());
                 currHour = forecast[k]["dt_txt"].ToString().Split(null)[1].Substring(0, 5);
                 currX = margin + offsetX + k * inc;
-                currY = margin + ylen - (((currTemp - minTemp) / (maxTemp - minTemp)) * ylen);
+                currY = margin + ylen - (((currTemp - minTempG) / (maxTempG - minTempG)) * ylen);
 
                 if (k == 0)
                     path.MoveTo(currX, currY);
