@@ -17,7 +17,6 @@ namespace WeatherApplication
     public partial class NextDay : ContentPage
     {
         private int margin;
-        private int graphH = 500;
         private List<JToken> forecast;
         private float maxTemp;
         private float minTemp;
@@ -64,7 +63,7 @@ namespace WeatherApplication
                 TextSize = 2 * margin
             };
 
-            margin = Math.Min(hg / 5, wd / 5);
+            margin = Math.Min(hg / 4, wd / 4);
 
             ylen = hg - 2 * margin;   
 
@@ -72,7 +71,7 @@ namespace WeatherApplication
 
             float factor = ((0 - minTemp) / (maxTemp - minTemp));
 
-            cnv.DrawLine(margin, margin + ylen - factor*ylen, wd - margin, margin + ylen - factor * ylen, coorPaint); // draw the X axis            
+            cnv.DrawLine(margin, margin + ylen - factor*ylen, wd - margin, margin + ylen - factor * ylen, coorPaint); // draw the X axis
         }
 
         void DrawGraph(SKCanvas cnv, int wd, int hg)
@@ -81,7 +80,8 @@ namespace WeatherApplication
             {        // paint for the graphic
                 Style = SKPaintStyle.Stroke,
                 Color = SKColors.LightGray,
-                StrokeWidth = 4,
+                StrokeWidth = 2,
+                IsAntialias = true,
                 StrokeCap = SKStrokeCap.Butt
 
             };
@@ -93,16 +93,16 @@ namespace WeatherApplication
                 StrokeWidth = 1,
                 IsAntialias = true,
                 TextAlign = SKTextAlign.Center,
-                TextSize = margin
+                TextSize = margin/2
             };
 
             SKPath path = new SKPath();
 
-            float offsetX = wd / 7; // Empty space for the graph takes one entrance of the count
+            float offsetX = wd / 10; // Empty space for the graph takes one entrance of the count
             
             float graphW = wd - 2 * margin - 2* offsetX;
             
-            float inc = graphW / forecast.Count;
+            float inc = graphW / (forecast.Count - 1);
 
             float currTemp, currX, currY;
             string currHour;
@@ -119,6 +119,7 @@ namespace WeatherApplication
                 else
                     path.LineTo(currX, currY);
 
+                cnv.DrawCircle(currX, currY, margin/10, gPaint);
                 cnv.DrawText(currTemp.ToString() + "ºC", currX, margin, tPain_t);
                 cnv.DrawText(currHour, currX, hg, tPain_t);
             }
