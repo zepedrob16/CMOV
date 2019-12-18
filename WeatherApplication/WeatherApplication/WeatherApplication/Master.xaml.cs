@@ -16,6 +16,7 @@ namespace WeatherApplication
         CheckWeather checkWeather;
         public bool loading = true;
         public List<Button> allCities = new List<Button>();
+        public List<string> allNames = new List<string>();
 
         public Master(CheckWeather checkW)
         {
@@ -36,12 +37,18 @@ namespace WeatherApplication
             for(int i = 0; i < favourites.Count; i++)
             {
                 AddEntry(favourites[i].Value, favourites[i].Key);
+                allNames.Add(favourites[i].Value);
             }
             loading = false;
         }
         
         public void submitEntry(string cityName)
         {
+            foreach (var city in allNames)
+            {
+                if (cityName == city)
+                    return;
+            }
 
             foreach (var obj in checkWeather.districtInfos)
             {
@@ -87,11 +94,21 @@ namespace WeatherApplication
             stackLayout.Children.Add(newRemoveFavourite);
 
             allCities.Add(button);
+            allNames.Add(cityName);
         }
 
         public void removeFavouriteCity(string name)
         {
             StackLayout stackLayout = (StackLayout)FindByName("masterLayout");
+
+            foreach (var city in allNames)
+            {
+                if (city == name)
+                {
+                    allNames.Remove(city);
+                    break;
+                }
+            }
 
             foreach (var obj in allCities)
             {
