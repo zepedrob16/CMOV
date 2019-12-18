@@ -81,12 +81,13 @@ namespace WeatherApplication
         Weather weather = new Weather();
         Rain rain = new Rain();
         List<JToken> nextDayObjs = new List<JToken>();
+        String conditions;
 
         //Stores information obtained from the json
         public void jsonToWeather(string jsonResult)
         {
             JObject json = JObject.Parse(jsonResult);
-
+            conditions = json["weather"][0]["main"].ToString();
             city = json["name"].ToString();
             main.temp = Double.Parse(json["main"]["temp"].ToString());
             main.temp_min = Double.Parse(json["main"]["temp_min"].ToString());
@@ -112,6 +113,11 @@ namespace WeatherApplication
             string nextDay = today.AddDays(1).ToString("yyyy-MM-ddTHH:mm:ss").Substring(0,10);
 
             getListOfObjects(nextDay, jsonResult);            
+        }
+
+        public String getConditions()
+        {
+            return conditions;
         }
 
         private void getListOfObjects(string nextDay, string jsonResult)

@@ -37,7 +37,7 @@ namespace WeatherApplication
             Random rnd = new Random();
             posX = rnd.Next(wd / 5, 3 * wd / 4);
             posY = rnd.Next(hg / 4, hg / 4);
-            timeToSpawn = (rnd.Next(0, 100)) / 100.0f;
+            timeToSpawn = (rnd.Next(0, 200)) / 100.0f;
 
             int lowerY = (int)(hg / 1.3f);
             maxY = rnd.Next(lowerY, hg);

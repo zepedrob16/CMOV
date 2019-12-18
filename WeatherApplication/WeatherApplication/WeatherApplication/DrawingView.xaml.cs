@@ -21,7 +21,6 @@ namespace WeatherApplication
         public float globalScale = 1;
         private SKCanvas cnv;
         private String conditions = "";
-        private String description = "";
        
         // Animation Parameters
         // Sun
@@ -46,10 +45,9 @@ namespace WeatherApplication
             stopwatch = new Stopwatch();
         }
 
-        public void setConditions(String conds, String desc, float wind, float rain)
+        public void setConditions(String conds, float wind, float rain)
         {
             conditions = conds;
-            description = desc;
             windSpeed = wind;
             rainIntensity = rain;
         }
@@ -214,7 +212,8 @@ namespace WeatherApplication
 
         private void CreateRain()
         {
-            for (int i = 0; i < rainIntensity; i++)            
+            int numDrops = (int) (rainIntensity / 100f) * wd;
+            for (int i = 0; i < numDrops; i++)            
                 rain.Add(new WeatherDroplet(wd, hg, windSpeed));
             
         }

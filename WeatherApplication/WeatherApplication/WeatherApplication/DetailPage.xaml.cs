@@ -50,10 +50,17 @@ namespace WeatherApplication
             pressure.Text = district.getMainPressure().ToString() + " hpa";
             wind.Text = district.getWindSpeed().ToString() + " m/s";
             //weatherIconImage.Source = district.getIcon();
-            
+
             // Weather Animations
-            // TODO CHANGE BY REAL VALUE
-            drawingView.setConditions("Rain", "few", (float) district.getWindSpeed(), 70);
+            // Real Value
+            //drawingView.setConditions(district.getConditions(), (float)district.getWindSpeed(), 70);
+            // Weather Tests
+            // Clear Sky
+            //drawingView.setConditions("Clear", (float)district.getWindSpeed(), 0);
+            // Moderate Rain
+            //drawingView.setConditions("Rain", (float) district.getWindSpeed(), 70);
+            // Heavy Rain
+            drawingView.setConditions("Rain", (float)district.getWindSpeed(), 150);
 
 
             nextDay = nextD;
