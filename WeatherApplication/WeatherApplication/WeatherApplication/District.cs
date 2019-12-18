@@ -35,7 +35,7 @@ namespace WeatherApplication
         public int deg { get; set; }
     }
 
-    public class Clouds
+    public class WeatherCloudForecast
     {
         public int all { get; set; }
     }
@@ -63,7 +63,7 @@ namespace WeatherApplication
         public Main main { get; set; }
         public int visibility { get; set; }
         public Wind wind { get; set; }
-        public Clouds clouds { get; set; }
+        public WeatherCloudForecast clouds { get; set; }
         public int dt { get; set; }
         public Sys sys { get; set; }
         public int timezone { get; set; }
@@ -77,7 +77,7 @@ namespace WeatherApplication
         string city = "";
         Main main = new Main();
         Wind wind = new Wind();
-        Clouds clouds = new Clouds();
+        WeatherCloudForecast clouds = new WeatherCloudForecast();
         Weather weather = new Weather();
         Rain rain = new Rain();
         List<JToken> nextDayObjs = new List<JToken>();
