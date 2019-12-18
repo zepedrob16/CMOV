@@ -45,7 +45,7 @@ namespace WeatherApplication
             mainTemperature.Text = district.getMainTemperature().ToString() + "ºC";
             temperature.Text = "Min: " + district.getMainMinTemperature().ToString() + "ºC | " +
                 " Max: " + district.getMainMaxTemperature().ToString() + "ºC";
-            precipitation.Text = district.getAllClouds().ToString() + " mm";
+            precipitation.Text = district.getRainVolume().ToString() + " mm";
             humidity.Text = district.getMainHumidity().ToString() + " %";
             pressure.Text = district.getMainPressure().ToString() + " hpa";
             wind.Text = district.getWindSpeed().ToString() + " m/s";

@@ -94,7 +94,12 @@ namespace WeatherApplication
             main.pressure = Int32.Parse(json["main"]["pressure"].ToString());
             main.humidity = Int32.Parse(json["main"]["humidity"].ToString());
             wind.speed = Double.Parse(json["wind"]["speed"].ToString());
-            clouds.all = Int32.Parse(json["clouds"]["all"].ToString());
+            if (json["rain"] == null)
+                rain.volume = 0;
+            else if (json["rain"]["1h"] != null)
+                rain.volume = Double.Parse(json["rain"]["1h"].ToString());
+            else if (json["rain"]["3h"] != null)
+                rain.volume = Double.Parse(json["rain"]["3h"].ToString());
 
             //This contains the weather icon url
             weather.icon = "http://openweathermap.org/img/w/" + json["weather"][0]["icon"].ToString() + ".png";
@@ -189,7 +194,7 @@ namespace WeatherApplication
         public int getMainPressure() { return main.pressure; }
         public int getMainHumidity() { return main.humidity; }
         public double getWindSpeed() { return wind.speed; }
-        public int getAllClouds() { return clouds.all; }
+        public double getRainVolume() { return rain.volume; }
         public string getIcon() { return weather.icon; }
         public double getMainNextDayMinTemp() { return main.next_day_temp_min; }
         public double getMainNextDayMaxTemp() { return main.next_day_temp_max; }
