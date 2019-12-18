@@ -81,13 +81,14 @@ namespace WeatherApplication
         Weather weather = new Weather();
         Rain rain = new Rain();
         List<JToken> nextDayObjs = new List<JToken>();
-        String conditions;
+        String conditions, description;
 
         //Stores information obtained from the json
         public void jsonToWeather(string jsonResult)
         {
             JObject json = JObject.Parse(jsonResult);
             conditions = json["weather"][0]["main"].ToString();
+            description = json["weather"][0]["description"].ToString();
             city = json["name"].ToString();
             main.temp = Double.Parse(json["main"]["temp"].ToString());
             main.temp_min = Double.Parse(json["main"]["temp_min"].ToString());
@@ -118,6 +119,11 @@ namespace WeatherApplication
         public String getConditions()
         {
             return conditions;
+        }
+
+        public String getDescription()
+        {
+            return description;
         }
 
         private void getListOfObjects(string nextDay, string jsonResult)
