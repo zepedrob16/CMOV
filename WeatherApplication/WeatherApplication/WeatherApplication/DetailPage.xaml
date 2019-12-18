@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="WeatherApplication.DetailPage"
              xmlns:WeatherApplication="clr-namespace:WeatherApplication"
-             Title="DetailPage"
+             Title="Open Weather"
              BackgroundColor="#191A22">
     
     <ContentPage.Content>
