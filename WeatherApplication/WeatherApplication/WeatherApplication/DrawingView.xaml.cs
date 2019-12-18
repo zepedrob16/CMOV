@@ -39,7 +39,8 @@ namespace WeatherApplication
         
         private List<WeatherCloud> clouds = new List<WeatherCloud>();
        
-        private SKPaint sunP, cloudLightP, cloudGrayP, cloudDarkP, rainFarP, rainMediumP, rainCloseP, snowFarP, snowMediumP, snowCloseP, thunderP;
+        private SKPaint sunP, cloudLightP, cloudGrayP, cloudDarkP, 
+            thunderCloudDarkP, thunderCloudLightP, thunderCloudGrayP, rainFarP, rainMediumP, rainCloseP, snowFarP, snowMediumP, snowCloseP, thunderP;
         public DrawingWeatherView()
         {
             InitializeComponent();
@@ -76,6 +77,34 @@ namespace WeatherApplication
                 IsAntialias = true,
                 StrokeCap = SKStrokeCap.Square
             };
+
+            thunderCloudLightP = new SKPaint
+            {      // paint for the axis and text
+                Style = SKPaintStyle.StrokeAndFill,
+                Color = SKColors.LightSlateGray,
+                StrokeWidth = 2,
+                IsAntialias = true,
+                StrokeCap = SKStrokeCap.Square
+            };
+
+            thunderCloudGrayP = new SKPaint
+            {      // paint for the axis and text
+                Style = SKPaintStyle.StrokeAndFill,
+                Color = SKColors.SlateGray,
+                StrokeWidth = 2,
+                IsAntialias = true,
+                StrokeCap = SKStrokeCap.Square
+            };
+
+            thunderCloudDarkP = new SKPaint
+            {      // paint for the axis and text
+                Style = SKPaintStyle.StrokeAndFill,
+                Color = SKColors.DarkSlateGray,
+                IsAntialias = true,
+                StrokeWidth = 2,
+                StrokeCap = SKStrokeCap.Square
+            };
+
 
             cloudLightP = new SKPaint
             {      // paint for the axis and text
@@ -141,7 +170,7 @@ namespace WeatherApplication
             snowFarP = new SKPaint
             {      // paint for the axis and text
                 Style = SKPaintStyle.Stroke,
-                Color = SKColors.Gray,
+                Color = SKColors.SlateGray,
                 StrokeWidth = 4,
                 StrokeCap = SKStrokeCap.Square
             };
@@ -239,22 +268,32 @@ namespace WeatherApplication
         {
             int numClouds = 10;
             
+            
             for (int i = 0; i < numClouds; i++)
             {
-                clouds.Add(new WeatherCloud(wd, hg, windSpeed, i , numClouds, conditions, 3, cloudDarkP, thunderP));
+                if (conditions == "Thunderstorm ")
+                    clouds.Add(new WeatherCloud(wd, hg, windSpeed, i , numClouds, conditions, 3, thunderCloudLightP, thunderP));
+                else
+                    clouds.Add(new WeatherCloud(wd, hg, windSpeed, i, numClouds, conditions, 3, cloudLightP, thunderP));
             }
             
             numClouds = 15;
 
             for (int i = 0; i < numClouds; i++)
             {
-                clouds.Add(new WeatherCloud(wd, hg, windSpeed, i, numClouds, conditions, 2, cloudGrayP, thunderP));
+                if (conditions == "Thunderstorm")
+                    clouds.Add(new WeatherCloud(wd, hg, windSpeed, i, numClouds, conditions, 2, thunderCloudGrayP, thunderP));
+                else
+                    clouds.Add(new WeatherCloud(wd, hg, windSpeed, i, numClouds, conditions, 2, cloudGrayP, thunderP));
             }
 
             numClouds = 20;
             for (int i = 0; i < numClouds; i++)
             {
-                clouds.Add(new WeatherCloud(wd, hg, windSpeed, i, numClouds, conditions, 1, cloudLightP, thunderP));
+                if (conditions == "Thunderstorm")
+                    clouds.Add(new WeatherCloud(wd, hg, windSpeed, i, numClouds, conditions, 1, thunderCloudDarkP, thunderP));
+                else 
+                    clouds.Add(new WeatherCloud(wd, hg, windSpeed, i, numClouds, conditions, 1, cloudDarkP, thunderP));
             }
         }
 
@@ -282,7 +321,7 @@ namespace WeatherApplication
 
         private void CreateRain()
         {
-            int numDrops = (int) ((rainIntensity / 400f) * wd);
+            int numDrops = (int) ((rainIntensity / 300f) * wd);
             
             if (conditions == "Drizzle")
                 numDrops *= 5;

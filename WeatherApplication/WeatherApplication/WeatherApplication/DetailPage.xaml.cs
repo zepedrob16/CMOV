@@ -66,7 +66,7 @@ namespace WeatherApplication
             // Light Thunder
             // drawingView.setConditions("Thunderstorm", "light thunderstorm", (float)district.getWindSpeed(), 70);
             // Heavy Thunder
-            drawingView.setConditions("Snow", "ragged thunderstorm", (float)district.getWindSpeed(), 70);
+            drawingView.setConditions("Thunderstorm", "ragged thunderstorm", (float)district.getWindSpeed(), 70);
             // Drizzle
             //drawingView.setConditions("Drizzle", district.getDescription(), (float)district.getWindSpeed(), 70);
             // Snow
