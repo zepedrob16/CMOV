@@ -25,12 +25,12 @@ namespace WeatherApplication
             
             posX = wd / 4 + i * (wd / 2) / numClouds;
             posY = hg / 8 + (rnd.Next(0, hg / 8)) + (hg/16) * distance;
-            size = rnd.Next(hg/9, hg/6);
-            radius = (rnd.Next(hg/12, hg/7) * (windSpeed / 10f))/ 20f;
-            speed = (rnd.Next(10, 30) * windSpeed/5) / 30f;
+            size = rnd.Next(hg/9, hg/7);
+            radius = (rnd.Next(hg/13, hg/6) * (windSpeed / 10f))/ 20f;
+            speed = (rnd.Next(2, 20) * windSpeed) / 60f;
             path = new SKPath();
 
-            size /= (Math.Max(1, distance));
+            size -=  distance*2;
             radius /= (Math.Max(1,distance*2));
             speed /= (Math.Max(1, distance*2));
         }
@@ -48,7 +48,7 @@ namespace WeatherApplication
 
         private void Update()
         {
-            currPos += speed / radius;
+            currPos += speed / (Math.Min(radius,1) * 2);
             posX = posX + (float)Math.Cos(currPos) * radius;
             posY = posY + (float)Math.Sin(currPos) * radius;
         }
