@@ -20,14 +20,17 @@ namespace WeatherApplication
         bool pageIsActive;
         public float globalScale = 1;
         private SKCanvas cnv;
-        private String conditions = "";
-       
+        private String conditions = "", description = "";
+        private Random rnd;
+        private bool isThundering;
+
         // Animation Parameters
         // Sun
         private float sunRotation;
 
         // Rain
         private float rainIntensity = 1;
+        private float thunderIntensity = 0;
        
         private List<WeatherDroplet> rain = new List<WeatherDroplet>();
 
@@ -43,13 +46,24 @@ namespace WeatherApplication
             CreatePaints();
             sunRotation = 0;
             stopwatch = new Stopwatch();
+            rnd = new Random();
         }
 
-        public void setConditions(String conds, float wind, float rain)
+        public void setConditions(String conds, String desc, float wind, float rain)
         {
+            description = desc;
             conditions = conds;
             windSpeed = wind;
             rainIntensity = rain;
+
+            if (description.Contains("light thunderstorm"))
+                thunderIntensity = 2;
+            else if (description.Contains("heavy thunderstorm"))
+                thunderIntensity = 5;
+            else if (description.Contains("ragged thunderstorm"))
+                thunderIntensity = 8;
+            else if (description.Contains("thunderstorm"))
+                thunderIntensity = 3;
         }
 
         private void CreatePaints()
@@ -101,8 +115,8 @@ namespace WeatherApplication
             thunderP = new SKPaint
             {      // paint for the axis and text
                 Style = SKPaintStyle.Stroke,
-                Color = SKColors.Blue,
-                StrokeWidth = 2,
+                Color = SKColors.White,
+                StrokeWidth = 4,
                 StrokeCap = SKStrokeCap.Square
             };
         }
@@ -146,7 +160,7 @@ namespace WeatherApplication
             if (conditions == "")
                 return;
             
-            if (conditions == "Rain" || conditions == "Thunderstorm" || conditions == "Drizzle")
+            if (rainIntensity >= 0)
                 DrawRain();
 
             if (conditions == "Clouds" || conditions == "Thunderstorm" || conditions == "Drizzle" || conditions == "Rain" || conditions == "Snow")
@@ -196,25 +210,39 @@ namespace WeatherApplication
                 CreateClouds();
 
             SKPaint paint = cloudGreyP;
-
+            isThundering = false;
             if (conditions == "Thunderstorm")
+            {
                 paint = cloudDarkP;
+                if (rnd.Next(0,100) < thunderIntensity)
+                {
+                    isThundering = true;
+                    paint = thunderP;
+                }
+            }
             else if (conditions == "Drizzle")
                 paint = cloudLightP;
+            
+            if (isThundering)
+                clouds[rnd.Next(0, clouds.Count -1)].TriggerThunder(paint, cnv);
 
             for (int i = 0; i < clouds.Count; i++)
             {
-                clouds[i].Update();
-                cnv.DrawCircle(clouds[i].posX, clouds[i].posY, clouds[i].size, paint);
-            }
-            
+                clouds[i].UpdateAndDraw(paint, cnv);
+            }   
         }
 
         private void CreateRain()
         {
-            int numDrops = (int) (rainIntensity / 100f) * wd;
+            int numDrops = (int) ((rainIntensity / 100f) * wd);
+            
+            if (conditions == "Drizzle")
+                numDrops *= 5;
+            if (conditions == "Snow")
+                numDrops *= 10;
+
             for (int i = 0; i < numDrops; i++)            
-                rain.Add(new WeatherDroplet(wd, hg, windSpeed));
+                rain.Add(new WeatherDroplet(wd, hg, windSpeed, conditions));
             
         }
         private void DrawRain()
@@ -222,8 +250,15 @@ namespace WeatherApplication
             if (rain.Count == 0)
                 CreateRain();
 
-            for (int i = 0; i < rain.Count; i++)
-                rain[i].UpdateAndDraw(rainP, cnv);
+           for (int i = 0; i < rain.Count; i++)
+            {
+
+                if (isThundering || conditions == "Snow")
+                    rain[i].UpdateAndDraw(thunderP, cnv);
+                else
+                    rain[i].UpdateAndDraw(rainP, cnv);
+            }
+                
         }
     }
 }
