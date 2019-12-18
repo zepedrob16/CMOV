@@ -118,7 +118,7 @@ namespace WeatherApplication
             cloudGrayP = new SKPaint
             {      // paint for the axis and text
                 Style = SKPaintStyle.StrokeAndFill,
-                Color = SKColors.Gray,
+                Color = SKColors.DarkGray,
                 StrokeWidth = 2,
                 IsAntialias = true,
                 StrokeCap = SKStrokeCap.Square
@@ -127,7 +127,7 @@ namespace WeatherApplication
             cloudDarkP = new SKPaint
             {      // paint for the axis and text
                 Style = SKPaintStyle.StrokeAndFill,
-                Color = SKColors.DarkGray,
+                Color = SKColors.Gray,
                 IsAntialias = true,
                 StrokeWidth = 2,
                 StrokeCap = SKStrokeCap.Square
@@ -307,9 +307,8 @@ namespace WeatherApplication
             if (conditions == "Thunderstorm")
             {
                 if (rnd.Next(0,100) < thunderIntensity)
-                {
                     isThundering = true;
-                }
+                
             }
             if (isThundering)
                 clouds[rnd.Next(0, clouds.Count -1)].TriggerThunder(cnv);

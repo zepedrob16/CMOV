@@ -43,6 +43,8 @@ namespace WeatherApplication
             pressure.Text = district.getMainNextDayPressure().ToString() + " hpa";
             wind.Text = district.getWindNextDaySpeed().ToString() + " m/s";
             forecast = district.getNextDayObjs();
+            
+            drawingView.setConditions(district.getConditions(), district.getDescription(), (float)district.getWindSpeed(), (float)district.getRainVolume());
         }
 
 

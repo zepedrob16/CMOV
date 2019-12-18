@@ -53,20 +53,20 @@ namespace WeatherApplication
 
             // Weather Animations
             // Real Value
-            //drawingView.setConditions(district.getConditions(), district.getDescription(), (float)district.getWindSpeed(), 70);
+            drawingView.setConditions(district.getConditions(), district.getDescription(), (float)district.getWindSpeed(), (float) district.getRainVolume());
             // Weather Tests
             // Clear Sky
-            // drawingView.setConditions("Clear", district.getDescription(), (float)district.getWindSpeed(), 0);
+            //drawingView.setConditions("Clear", district.getDescription(), (float)district.getWindSpeed(), 0);
             // Moderate Rain
             //drawingView.setConditions("Rain", district.getDescription(), (float) district.getWindSpeed(), 70);
             // Heavy Rain
             //drawingView.setConditions("Rain", district.getDescription(), (float)district.getWindSpeed(), 150);
             // Heavy Rain, Heavy Wind
-            // drawingView.setConditions("Rain", district.getDescription(), 30, 150);
+            //drawingView.setConditions("Rain", district.getDescription(), 30, 150);
             // Light Thunder
             // drawingView.setConditions("Thunderstorm", "light thunderstorm", (float)district.getWindSpeed(), 70);
             // Heavy Thunder
-            drawingView.setConditions("Thunderstorm", "ragged thunderstorm", (float)district.getWindSpeed(), 70);
+            //drawingView.setConditions("Thunderstorm", "ragged thunderstorm", (float)district.getWindSpeed(), 70);
             // Drizzle
             //drawingView.setConditions("Drizzle", district.getDescription(), (float)district.getWindSpeed(), 70);
             // Snow

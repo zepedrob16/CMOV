@@ -16,7 +16,7 @@ namespace WeatherApplication
 
         public WeatherCloud(int wd, int hg, float windSpeed, int i, int numClouds, String conditions, int distance, SKPaint paint, SKPaint thunderPaint)
         {
-            this.thunderP = thunderPaint;
+            thunderP = thunderPaint;
             this.conditions = conditions;
             this.paint = paint;
             rnd = new Random();
@@ -26,8 +26,8 @@ namespace WeatherApplication
             posX = wd / 4 + i * (wd / 2) / numClouds;
             posY = hg / 8 + (rnd.Next(0, hg / 8)) + (hg/16) * distance;
             size = rnd.Next(hg/9, hg/7);
-            radius = (rnd.Next(hg/13, hg/6) * (windSpeed / 10f))/ 20f;
-            speed = (rnd.Next(2, 20) * windSpeed) / 60f;
+            radius = (rnd.Next(hg/20, hg/8))/ 50f;
+            speed = (rnd.Next(2, 20) * (windSpeed/3)) / 80f;
             path = new SKPath();
 
             size -=  distance*2;
