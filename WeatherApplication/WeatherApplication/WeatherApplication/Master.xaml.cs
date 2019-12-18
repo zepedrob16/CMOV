@@ -15,25 +15,20 @@ namespace WeatherApplication
     {
         CheckWeather checkWeather;
         public bool loading = true;
-        //public Detail detail = new Detail();
+        public List<Button> allCities = new List<Button>();
+
         public Master(CheckWeather checkW)
         {
             InitializeComponent();
             checkWeather = checkW;
 
-            /*buttonA.Clicked += delegate
-            {
-                checkWeather.getWeather(2735941);
-            };
-
-            buttonB.Clicked += delegate
-            {
-                checkWeather.getWeather(2267056);
-            };*/
-
             addFavourite.Clicked += delegate
             {
-                PopupNavigation.Instance.PushAsync(new PopupView(this));
+                PopupNavigation.Instance.PushAsync(new PopupView(this, true));
+            };
+            removeFavourite.Clicked += delegate
+            {
+                PopupNavigation.Instance.PushAsync(new PopupView(this, false));
             };
 
             List<KeyValuePair<int, string>> favourites = checkW.getFavourites();
@@ -86,6 +81,25 @@ namespace WeatherApplication
 
             //Adds the favourite button again
             stackLayout.Children.Add(newAddFavourite);
+
+            Button newRemoveFavourite = (Button)FindByName("removeFavourite");
+            stackLayout.Children.Remove(removeFavourite);
+            stackLayout.Children.Add(newRemoveFavourite);
+
+            allCities.Add(button);
+        }
+
+        public void removeFavouriteCity(string name)
+        {
+            StackLayout stackLayout = (StackLayout)FindByName("masterLayout");
+
+            foreach (var obj in allCities)
+            {
+                if (obj.Text == name)
+                {
+                    stackLayout.Children.Remove(obj);
+                }
+            }
         }
     }
 }
