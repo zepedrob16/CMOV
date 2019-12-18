@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,15 +19,29 @@ namespace WeatherApplication
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CheckWeather : MasterDetailPage
     {
-        public List<string> favourites = new List<string>();
+       // public List<string> favourites = new List<string>();
         JObject jObject = new JObject();
         DetailPage detailPage;
         Master master;
         public List<DistrictInfo> districtInfos;
-       
+
+        public List<KeyValuePair<int, string>> favourites = new List<KeyValuePair<int, string>>();
+
+
         public CheckWeather()
         {
             InitializeComponent();
+
+            var favouritesObtained = Preferences.Get("favourites", "");
+            if (favouritesObtained != "")
+            {
+                JArray jArray = JArray.Parse(favouritesObtained);
+
+                foreach (var obj in jArray)
+                {
+                    favourites.Add(new KeyValuePair<int, string>(Int32.Parse(obj["Key"].ToString()), obj["Value"].ToString()));
+                }
+            }
 
             getWeather(2735941);
             this.detailPage = new DetailPage();
@@ -36,6 +50,8 @@ namespace WeatherApplication
             this.Detail = new NavigationPage(detailPage);
             App.MasterDetail = this;
             districtInfos = LoadJson();
+
+            //var portals = JsonConvert.DeserializeObject<List<KeyValuePair<int, string>>(favouritesObtained);
         }
 
         public async void getWeather(int id)
@@ -73,10 +89,15 @@ namespace WeatherApplication
             Console.WriteLine(result);
         }
 
-        public void addFavourite(string city)
+        public void addFavourite(string city, int id)
         {
-            favourites.Add(city);
-           // master.updateFavourites()
+           // favourites.Add(city);
+            // master.updateFavourites()
+
+            favourites.Add(new KeyValuePair<int, string>(id, city));
+
+            var favouritesJSON = JsonConvert.SerializeObject(favourites);
+            Preferences.Set("favourites", favouritesJSON);
         }
 
         private List<DistrictInfo> LoadJson()
@@ -91,6 +112,6 @@ namespace WeatherApplication
             }
         }
 
-        public List<string> getFavourites() { return favourites; }
+        public List<KeyValuePair<int, string>> getFavourites() { return favourites; }
     }
 }

@@ -14,6 +14,7 @@ namespace WeatherApplication
     public partial class Master : ContentPage
     {
         CheckWeather checkWeather;
+        public bool loading = true;
         //public Detail detail = new Detail();
         public Master(CheckWeather checkW)
         {
@@ -34,6 +35,14 @@ namespace WeatherApplication
             {
                 PopupNavigation.Instance.PushAsync(new PopupView(this));
             };
+
+            List<KeyValuePair<int, string>> favourites = checkW.getFavourites();
+
+            for(int i = 0; i < favourites.Count; i++)
+            {
+                AddEntry(favourites[i].Value, favourites[i].Key);
+            }
+            loading = false;
         }
         
         public void submitEntry(string cityName)
@@ -52,7 +61,8 @@ namespace WeatherApplication
             StackLayout stackLayout = (StackLayout)FindByName("masterLayout");
 
             //Adds a favourite on the CheckWeather Class
-            checkWeather.addFavourite(cityName);
+            if (!loading)
+                checkWeather.addFavourite(cityName, id);
 
             //Creates a new button for the city that is being created
             Button button = new Button()
