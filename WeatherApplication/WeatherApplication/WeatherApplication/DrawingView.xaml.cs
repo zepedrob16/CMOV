@@ -95,7 +95,7 @@ namespace WeatherApplication
             rainP = new SKPaint
             {      // paint for the axis and text
                 Style = SKPaintStyle.Stroke,
-                Color = SKColors.Blue,
+                Color = SKColors.LightCyan,
                 StrokeWidth = 2,
                 StrokeCap = SKStrokeCap.Square
             };
@@ -211,9 +211,20 @@ namespace WeatherApplication
             }
             
         }
+
+        private void CreateRain()
+        {
+            for (int i = 0; i < rainIntensity; i++)            
+                rain.Add(new WeatherDroplet(wd, hg, windSpeed));
+            
+        }
         private void DrawRain()
         {
-            cnv.DrawCircle(0, 0, 100, rainP);
+            if (rain.Count == 0)
+                CreateRain();
+
+            for (int i = 0; i < rain.Count; i++)
+                rain[i].UpdateAndDraw(rainP, cnv);
         }
     }
 }

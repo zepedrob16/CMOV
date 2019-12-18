@@ -53,7 +53,7 @@ namespace WeatherApplication
             
             // Weather Animations
             // TODO CHANGE BY REAL VALUE
-            drawingView.setConditions("Clouds", "few", (float) district.getWindSpeed(), (float) district.getAllClouds());
+            drawingView.setConditions("Rain", "few", (float) district.getWindSpeed(), (float) district.getAllClouds());
 
 
             nextDay = nextD;
