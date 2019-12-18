@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Newtonsoft.Json.Linq;
 
@@ -24,6 +25,7 @@ namespace WeatherApplication
         public double temp_max { get; set; }
         public double next_day_temp_min { get; set; }
         public double next_day_temp_max { get; set; }
+        public string next_day_weather { get; set; }
     }
 
     public class Wind
@@ -117,6 +119,8 @@ namespace WeatherApplication
             int maxHumidity = 0;
             double maxWind = 0;
             int maxPressure = 0;
+
+            List<string> weatherList = new List<string>();
             
 
             foreach (var obj in json["list"])
@@ -158,6 +162,10 @@ namespace WeatherApplication
                     int pressureToCompare = Int32.Parse(obj["main"]["pressure"].ToString());
                     if (pressureToCompare > maxPressure)
                         maxPressure = pressureToCompare;
+
+                    //Main weather
+                    weatherList.Add(obj["weather"][0]["main"].ToString());
+                    
                 }  
             };
 
@@ -167,8 +175,11 @@ namespace WeatherApplication
             rain.next_day_volume = maxRain;
             wind.next_day_speed = maxWind;
             main.next_day_pressure = maxPressure;
+            main.next_day_weather = weatherList.GroupBy(x => x)
+                          .OrderByDescending(x => x.Count())
+                          .First().Key;
 
-            
+
         }
 
         //Gets
@@ -189,6 +200,7 @@ namespace WeatherApplication
         public double getWindNextDaySpeed() { return wind.next_day_speed; }
         public double getMainNextDayPressure() { return main.next_day_pressure; }
         public List<JToken> getNextDayObjs() { return nextDayObjs; }
+        public string getMainNextDayWeather() { return main.next_day_weather; }
     }
 
     public class DistrictInfo

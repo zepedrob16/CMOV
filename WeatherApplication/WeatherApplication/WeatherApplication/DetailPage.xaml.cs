@@ -42,13 +42,13 @@ namespace WeatherApplication
         public void setWeather(District district, NextDay nextD)
         {
             cityName.Text = district.getCityName().ToString();
-            mainTemperature.Text = district.getMainTemperature().ToString();
+            mainTemperature.Text = district.getMainTemperature().ToString() + "ºC";
             temperature.Text = "Min: " + district.getMainMinTemperature().ToString() + "ºC | " +
                 " Max: " + district.getMainMaxTemperature().ToString() + "ºC";
-            precipitation.Text = district.getAllClouds().ToString() + "%";
-            humidity.Text = district.getMainHumidity().ToString();
-            pressure.Text = district.getMainPressure().ToString();
-            wind.Text = district.getWindSpeed().ToString();
+            precipitation.Text = district.getAllClouds().ToString() + " mm";
+            humidity.Text = district.getMainHumidity().ToString() + " %";
+            pressure.Text = district.getMainPressure().ToString() + " hpa";
+            wind.Text = district.getWindSpeed().ToString() + " m/s";
             //weatherIconImage.Source = district.getIcon();
 
             nextDay = nextD;

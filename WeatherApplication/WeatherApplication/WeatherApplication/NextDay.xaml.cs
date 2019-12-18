@@ -38,10 +38,10 @@ namespace WeatherApplication
             maxTempG = Math.Max(float.Parse(district.getMainNextDayMaxTemp().ToString()),25);
             temperature.Text = "Min: " + district.getMainNextDayMinTemp().ToString() + "ºC | " +
                 " Max: " + district.getMainNextDayMaxTemp().ToString() + "ºC";
-            humidity.Text = district.getMainNextDayHumidity().ToString();
-            precipitation.Text = district.getRainNextDayVolume().ToString();
-            pressure.Text = district.getMainNextDayPressure().ToString();
-            wind.Text = district.getWindNextDaySpeed().ToString();
+            humidity.Text = district.getMainNextDayHumidity().ToString() + " %";
+            precipitation.Text = district.getRainNextDayVolume().ToString() + " mm";
+            pressure.Text = district.getMainNextDayPressure().ToString() + " hpa";
+            wind.Text = district.getWindNextDaySpeed().ToString() + " m/s";
             forecast = district.getNextDayObjs();
         }
 

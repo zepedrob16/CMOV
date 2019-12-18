@@ -170,7 +170,7 @@
             
             <skia:SKCanvasView 
                 x:Name="canvas"
-                HorizontalOptions="Fill"
+                HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
                 Grid.Row="4"
                 Grid.Column="1"
