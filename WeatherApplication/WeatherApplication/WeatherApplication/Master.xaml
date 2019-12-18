@@ -10,5 +10,6 @@
              IconImageSource="ic_action_menu.png">
     <StackLayout Padding="20" x:Name="masterLayout">
         <Button x:Name="addFavourite" Text="Add New City" BackgroundColor="#191A22" TextColor="White"></Button>
+        <Button x:Name="removeFavourite" Text="Remove Favourite" BackgroundColor="#191A22" TextColor="White"></Button>
     </StackLayout>
 </ContentPage>

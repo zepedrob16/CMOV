@@ -13,15 +13,26 @@ namespace WeatherApplication
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupView
     {
-        public PopupView(Master master)
+        public PopupView(Master master, bool isBeingAdded)
         {
             InitializeComponent();
 
-            citySubmit.Completed += (s, e) =>
+            if (isBeingAdded)
             {
-                master.submitEntry(citySubmit.Text);
-                PopupNavigation.Instance.PopAsync(true);
-            };
+                citySubmit.Completed += (s, e) =>
+                {
+                    master.submitEntry(citySubmit.Text);
+                    PopupNavigation.Instance.PopAsync(true);
+                };
+            }
+            else
+            {
+                citySubmit.Completed += (s, e) =>
+                {
+                    master.removeFavouriteCity(citySubmit.Text);
+                    PopupNavigation.Instance.PopAsync(true);
+                };
+            }
         }
     }
 }

@@ -178,8 +178,6 @@ namespace WeatherApplication
             main.next_day_weather = weatherList.GroupBy(x => x)
                           .OrderByDescending(x => x.Count())
                           .First().Key;
-
-
         }
 
         //Gets
