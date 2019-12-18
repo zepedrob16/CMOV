@@ -50,6 +50,11 @@ namespace WeatherApplication
             pressure.Text = district.getMainPressure().ToString() + " hpa";
             wind.Text = district.getWindSpeed().ToString() + " m/s";
             //weatherIconImage.Source = district.getIcon();
+            
+            // Weather Animations
+            // TODO CHANGE BY REAL VALUE
+            drawingView.setConditions("Clouds", "few", (float) district.getWindSpeed(), (float) district.getAllClouds());
+
 
             nextDay = nextD;
         }

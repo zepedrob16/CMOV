@@ -20,9 +20,22 @@ namespace WeatherApplication
         bool pageIsActive;
         public float globalScale = 1;
         private SKCanvas cnv;
-        private String conditions = "Clear";
-
+        private String conditions = "";
+        private String description = "";
+       
+        // Animation Parameters
+        // Sun
         private float sunRotation;
+
+        // Rain
+        private float rainIntensity = 1;
+       
+        private List<WeatherDroplet> rain = new List<WeatherDroplet>();
+
+        // Clouds
+        private float windSpeed; 
+        
+        private List<WeatherCloud> clouds = new List<WeatherCloud>();
        
         private SKPaint sunP, cloudLightP, cloudGreyP, cloudDarkP, rainP, thunderP;
         public DrawingWeatherView()
@@ -31,6 +44,14 @@ namespace WeatherApplication
             CreatePaints();
             sunRotation = 0;
             stopwatch = new Stopwatch();
+        }
+
+        public void setConditions(String conds, String desc, float wind, float rain)
+        {
+            conditions = conds;
+            description = desc;
+            windSpeed = wind;
+            rainIntensity = rain;
         }
 
         private void CreatePaints()
@@ -78,6 +99,14 @@ namespace WeatherApplication
                 StrokeWidth = 2,
                 StrokeCap = SKStrokeCap.Square
             };
+
+            thunderP = new SKPaint
+            {      // paint for the axis and text
+                Style = SKPaintStyle.Stroke,
+                Color = SKColors.Blue,
+                StrokeWidth = 2,
+                StrokeCap = SKStrokeCap.Square
+            };
         }
 
         public void OnAppearing()
@@ -116,30 +145,34 @@ namespace WeatherApplication
 
             cnv.Clear();
 
-            if (conditions == "Clear")
-                DrawSun();
-            else if (conditions == "Clouds")
-                DrawClouds();
-            else if (conditions == "Rain")
+            if (conditions == "")
+                return;
+            
+            if (conditions == "Rain" || conditions == "Thunderstorm" || conditions == "Drizzle")
                 DrawRain();
+
+            if (conditions == "Clouds" || conditions == "Thunderstorm" || conditions == "Drizzle" || conditions == "Rain" || conditions == "Snow")
+                DrawClouds();
+            else 
+                DrawSun();           
         }
 
         private void DrawSun()
         {
             sunRotation += 1 / 60f;
             float sunRadius = Math.Min(wd / 5, hg / 5);
-            cnv.DrawCircle(wd/2, hg/2, sunRadius, sunP);
+            cnv.DrawCircle(wd/2, hg/2, sunRadius * 0.8f, sunP);
             
             float bladeRadius = Math.Min(wd / 5, hg / 5);
             double currPos = sunRotation;
             int blades = 8;
-            float startX = wd/2, startY = hg/2, endX = 0, endY = 0;
+            float startX, startY , endX, endY;
             for (int i = 0; i < blades; i++)
             {
-                startX = wd / 2 + sunRadius * (float) Math.Cos(currPos);
+                startX = wd / 1.5f + sunRadius * (float) Math.Cos(currPos);
                 endX = startX + bladeRadius * (float) Math.Cos(currPos);
 
-                startY = hg / 2 + sunRadius * (float) Math.Sin(currPos);
+                startY = hg / 1.5f + sunRadius * (float) Math.Sin(currPos);
                 endY = startY + bladeRadius * (float)Math.Sin(currPos);
                 
                 currPos += Math.PI * 2 / blades;
@@ -147,9 +180,36 @@ namespace WeatherApplication
                 cnv.DrawLine(startX, startY, endX, endY, sunP);
             }
         }
+        
+        private void CreateClouds()
+        {
+            int numClouds = 20;
+            
+            for (int i = 0; i < numClouds; i++)
+            {
+                clouds.Add(new WeatherCloud(wd, hg, windSpeed, i , numClouds));
+            }
+        }
+
+ 
         private void DrawClouds()
         {
-            cnv.DrawCircle(0, 0, 100, cloudGreyP);
+            if (clouds.Count == 0)
+                CreateClouds();
+
+            SKPaint paint = cloudGreyP;
+
+            if (conditions == "Thunderstorm")
+                paint = cloudDarkP;
+            else if (conditions == "Drizzle")
+                paint = cloudLightP;
+
+            for (int i = 0; i < clouds.Count; i++)
+            {
+                clouds[i].Update();
+                cnv.DrawCircle(clouds[i].posX, clouds[i].posY, clouds[i].size, paint);
+            }
+            
         }
         private void DrawRain()
         {
