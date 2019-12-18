@@ -11,25 +11,39 @@ namespace WeatherApplication
         int wd, hg;
         private SKPath path;
         Random rnd;
+        String conditions;
+        SKPaint paint, thunderP;
 
-        public WeatherCloud(int wd, int hg, float windSpeed, int i, int numClouds)
+        public WeatherCloud(int wd, int hg, float windSpeed, int i, int numClouds, String conditions, int distance, SKPaint paint, SKPaint thunderPaint)
         {
+            this.thunderP = thunderPaint;
+            this.conditions = conditions;
+            this.paint = paint;
             rnd = new Random();
             this.wd = wd;
             this.hg = hg;
-
+            
             posX = wd / 4 + i * (wd / 2) / numClouds;
-            posY = hg / 8 + (rnd.Next(0, hg / 6));
-            size = rnd.Next(hg / 9, hg / 7);
-            radius = (rnd.Next(hg/12, hg/8) * (windSpeed / 10f))/ 200f;
-            speed = (rnd.Next(10, 30) * windSpeed) / 30f;
+            posY = hg / 8 + (rnd.Next(0, hg / 8)) + (hg/16) * distance;
+            size = rnd.Next(hg/9, hg/6);
+            radius = (rnd.Next(hg/12, hg/7) * (windSpeed / 10f))/ 20f;
+            speed = (rnd.Next(10, 30) * windSpeed/5) / 30f;
             path = new SKPath();
+
+            size /= (Math.Max(1, distance));
+            radius /= (Math.Max(1,distance*2));
+            speed /= (Math.Max(1, distance*2));
         }
 
-        public void UpdateAndDraw(SKPaint paint, SKCanvas cnv)
+        public void UpdateAndDraw(SKCanvas cnv, bool isThundering)
         {
             Update();
-            cnv.DrawCircle(posX, posY, size, paint);
+            
+            if (isThundering)
+                cnv.DrawCircle(posX, posY, size, thunderP);
+            else
+                cnv.DrawCircle(posX, posY, size, paint);
+
         }
 
         private void Update()
@@ -37,10 +51,9 @@ namespace WeatherApplication
             currPos += speed / radius;
             posX = posX + (float)Math.Cos(currPos) * radius;
             posY = posY + (float)Math.Sin(currPos) * radius;
-           
         }
 
-        public void TriggerThunder(SKPaint paint, SKCanvas cnv)
+        public void TriggerThunder(SKCanvas cnv)
         {
             path.Reset();
             int x1 = rnd.Next(wd / 4, 3 * wd / 4);
@@ -52,9 +65,7 @@ namespace WeatherApplication
             int x3 = Math.Min(wd, Math.Max(0, rnd.Next(x2 - wd / 8, x1 + wd / 8)));
             path.LineTo(x3, rnd.Next((int) (hg / 1.35f), hg));
 
-            
-            cnv.DrawPath(path, paint);
-            paint.Style = SKPaintStyle.StrokeAndFill;
+            cnv.DrawPath(path, thunderP);            
         }
     }
 }
