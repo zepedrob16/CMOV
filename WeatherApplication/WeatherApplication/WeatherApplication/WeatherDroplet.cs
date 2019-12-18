@@ -39,8 +39,13 @@ namespace WeatherApplication
         {
             Random rnd = new Random();
             posX = rnd.Next(wd / 5, 3 * wd / 4);
-            posY = rnd.Next(hg / 4, hg / 4);
+            posY = rnd.Next(hg / 5, hg / 4);
+            
             timeToSpawn = (rnd.Next(0, 200)) / 100.0f;
+            if (type == "Drizzle")
+                timeToSpawn = (rnd.Next(0, 800)) / 100.0f;
+            if (type == "Snow")
+                timeToSpawn = (rnd.Next(0, 1600)) / 100.0f;
 
             int lowerY = (int)(hg / 1.3f);
             maxY = rnd.Next(lowerY, hg);
@@ -99,12 +104,24 @@ namespace WeatherApplication
             // If it is not thundering
             if (paint.Color != SKColors.White)
             {
-                if (proximity < 0.2f)
-                    paint.Color = SKColors.DarkCyan;
-                else if (proximity < 0.5f)
-                    paint.Color = SKColors.Cyan;
-                else
-                    paint.Color = SKColors.LightCyan;
+                if (type == "Snow")
+                {
+                    if (proximity < 0.2f)
+                        paint.Color = SKColors.Gray;
+                    else if (proximity < 0.5f)
+                        paint.Color = SKColors.LightGray;
+                    else
+                        paint.Color = SKColors.White;
+                } else
+                { 
+                    // Parallax colors
+                    if (proximity < 0.2f)
+                        paint.Color = SKColors.DarkCyan;
+                    else if (proximity < 0.5f)
+                        paint.Color = SKColors.Cyan;
+                    else
+                        paint.Color = SKColors.LightCyan;
+                }
             }
 
             // Don't draw when resetting positions

@@ -235,6 +235,12 @@ namespace WeatherApplication
         private void CreateRain()
         {
             int numDrops = (int) ((rainIntensity / 100f) * wd);
+            
+            if (conditions == "Drizzle")
+                numDrops *= 5;
+            if (conditions == "Snow")
+                numDrops *= 10;
+
             for (int i = 0; i < numDrops; i++)            
                 rain.Add(new WeatherDroplet(wd, hg, windSpeed, conditions));
             
@@ -244,9 +250,10 @@ namespace WeatherApplication
             if (rain.Count == 0)
                 CreateRain();
 
-            for (int i = 0; i < rain.Count; i++)
+           for (int i = 0; i < rain.Count; i++)
             {
-                if (isThundering)
+
+                if (isThundering || conditions == "Snow")
                     rain[i].UpdateAndDraw(thunderP, cnv);
                 else
                     rain[i].UpdateAndDraw(rainP, cnv);

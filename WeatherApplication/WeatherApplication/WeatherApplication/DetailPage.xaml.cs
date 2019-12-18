@@ -64,11 +64,13 @@ namespace WeatherApplication
             // Heavy Rain, Heavy Wind
             // drawingView.setConditions("Rain", district.getDescription(), 30, 150);
             // Light Thunder
-            drawingView.setConditions("Thunderstorm", "light thunderstorm", (float)district.getWindSpeed(), 70);
+            //drawingView.setConditions("Thunderstorm", "light thunderstorm", (float)district.getWindSpeed(), 70);
             // Heavy Thunder
-            drawingView.setConditions("Thunderstorm", "ragged thunderstorm", (float)district.getWindSpeed(), 70);
+            //drawingView.setConditions("Thunderstorm", "ragged thunderstorm", (float)district.getWindSpeed(), 70);
+            // Drizzle
+            //drawingView.setConditions("Drizzle", district.getDescription(), (float)district.getWindSpeed(), 70);
             // Snow
-            //drawingView.setConditions("Snow", district.getDescription(), (float)district.getWindSpeed(), 70);
+            drawingView.setConditions("Snow", district.getDescription(), (float)district.getWindSpeed(), 70);
 
 
             nextDay = nextD;
