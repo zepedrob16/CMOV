@@ -320,7 +320,7 @@ namespace WeatherApplication
 
         private void CreateRain()
         {
-            int numDrops = (int) ((rainIntensity / 300f) * wd);
+            int numDrops = (int) ((rainIntensity / 30f) * wd);
             
             if (conditions == "Drizzle")
                 numDrops *= 5;
